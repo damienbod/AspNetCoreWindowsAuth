@@ -561,3 +561,673 @@ System.Exception: External authentication error
   "LocalIpAddress": "127.0.0.1:13276",
   "RemoteIpAddress": "::1"
 }
+2018-04-10 22:55:26.355 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2018-04-10 22:55:26.411 +02:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-04-10 22:55:26.414 +02:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-04-10 22:55:26.414 +02:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-04-10 22:55:26.414 +02:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-04-10 22:55:26.414 +02:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-04-10 22:55:29.988 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2018-04-10 22:55:30.000 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2018-04-10 22:55:30.000 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2018-04-10 22:55:30.007 +02:00 [DBG] Start discovery request
+2018-04-10 22:55:30.354 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2018-04-10 22:55:30.355 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2018-04-10 22:55:30.355 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2018-04-10 22:55:30.361 +02:00 [DBG] Start key discovery request
+2018-04-10 22:55:30.541 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2018-04-10 22:55:30.549 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2018-04-10 22:55:30.549 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2018-04-10 22:55:30.557 +02:00 [DBG] Start authorize request
+2018-04-10 22:55:30.571 +02:00 [DBG] No user present in authorize request
+2018-04-10 22:55:30.576 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:55:30.609 +02:00 [ERR] Invalid redirect_uri: https://localhost:44381/signin-oidc
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "AllowedRedirectUris": [
+    "http://localhost:54196/signin-oidc"
+  ],
+  "SubjectId": "anonymous",
+  "RequestedScopes": "",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589905304654827.NGQ3NjVjNjEtY2E0Mi00NDAyLTlhOGEtNTQ0YmI1NjQ1NWU5ZmNkY2ZiMzQtMTRkYy00OTUxLTk5MmMtOTU3NzE1OTFlNGE3",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo3ZVCJ2aXBZi6EtLYuxibyXINKWhnhtytmUPL8vW0iAZt0buFPfLEw8lL5wktENlMJos5FPPGa2d_FJX140DkWkMjyZhe3PQn0vGWJStVC1OkfqxKh5tVcpUqIthwcmnUTI1PTpvubkWL5g7HxZ1hA3GEyWbcLP2dwmteVhoC9V0Jcs7GD9ZSpmj2qwSPNTHA2Z4yM4Or-1zptvUqiFzAuO_91dlyAfUxuLAoqMV8tWQqdzEhKBpEmgxS6zAGGkNFAlBKdvExULoiIp81tZF7SiS1YIPdXiqznfOdeeMCZmdZ5w9KjMEwaHaDnV7-xSxj4",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:55:30.616 +02:00 [ERR] Request validation failed
+2018-04-10 22:55:30.618 +02:00 [INF] {
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "AllowedRedirectUris": [
+    "http://localhost:54196/signin-oidc"
+  ],
+  "SubjectId": "anonymous",
+  "RequestedScopes": "",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589905304654827.NGQ3NjVjNjEtY2E0Mi00NDAyLTlhOGEtNTQ0YmI1NjQ1NWU5ZmNkY2ZiMzQtMTRkYy00OTUxLTk5MmMtOTU3NzE1OTFlNGE3",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo3ZVCJ2aXBZi6EtLYuxibyXINKWhnhtytmUPL8vW0iAZt0buFPfLEw8lL5wktENlMJos5FPPGa2d_FJX140DkWkMjyZhe3PQn0vGWJStVC1OkfqxKh5tVcpUqIthwcmnUTI1PTpvubkWL5g7HxZ1hA3GEyWbcLP2dwmteVhoC9V0Jcs7GD9ZSpmj2qwSPNTHA2Z4yM4Or-1zptvUqiFzAuO_91dlyAfUxuLAoqMV8tWQqdzEhKBpEmgxS6zAGGkNFAlBKdvExULoiIp81tZF7SiS1YIPdXiqznfOdeeMCZmdZ5w9KjMEwaHaDnV7-xSxj4",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:55:30.704 +02:00 [INF] {
+  "Name": "Token Issued Failure",
+  "Category": "Token",
+  "EventType": "Failure",
+  "Id": 2001,
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "Endpoint": "Authorize",
+  "Scopes": "",
+  "Error": "unauthorized_client",
+  "ErrorDescription": "Invalid redirect_uri",
+  "ActivityId": "0HLCV4LHG1QUA:00000003",
+  "TimeStamp": "2018-04-10T20:55:30Z",
+  "ProcessId": 22388,
+  "LocalIpAddress": "127.0.0.1:32294",
+  "RemoteIpAddress": "::1"
+}
+2018-04-10 22:55:59.537 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2018-04-10 22:55:59.590 +02:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-04-10 22:55:59.593 +02:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-04-10 22:55:59.594 +02:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-04-10 22:55:59.594 +02:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-04-10 22:55:59.594 +02:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-04-10 22:56:00.084 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2018-04-10 22:56:00.232 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2018-04-10 22:56:00.232 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2018-04-10 22:56:00.239 +02:00 [DBG] Start discovery request
+2018-04-10 22:56:00.499 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2018-04-10 22:56:00.500 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2018-04-10 22:56:00.500 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2018-04-10 22:56:00.507 +02:00 [DBG] Start key discovery request
+2018-04-10 22:56:00.628 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2018-04-10 22:56:00.633 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2018-04-10 22:56:00.633 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2018-04-10 22:56:00.639 +02:00 [DBG] Start authorize request
+2018-04-10 22:56:00.649 +02:00 [DBG] No user present in authorize request
+2018-04-10 22:56:00.660 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:56:00.694 +02:00 [ERR] Invalid redirect_uri: https://localhost:44381/signin-oidc
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "AllowedRedirectUris": [
+    "http://localhost:54196/signin-oidc"
+  ],
+  "SubjectId": "anonymous",
+  "RequestedScopes": "",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589905605804127.MGNlMDk1MjktNjE1MS00NTNjLTkzMDAtYjcwNWM4MWYxYzFkN2YwNmNhNzEtYmQ1NS00YWNmLWJjYzItMDRhNGJjYzExODE1",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo1N4YdwF4Zfx5IXDc_qZKD6f4H9eo9gMzGxMxUfyCFU0Nvq7qzTKDaV8ofclhBW_wxDC-aS1seK0KNLvKZLGibUVzPfmgL1gNPkZhOzj3f1ErblWH2X8XO4MERVmXisSzA9LFYubvVGy-Ln9oWycdEr8e1X0vtu6as67JLZQDdLFav7qNiZQqyHcRhF1ogzpvbQzIy6xY4eMXa2Nx9jOEDMXTQYNIXBoSPiihruBBcaJYh_S2fmj3lwH8gfjhfFzE784aLiDrNkmgpPuLdAfdTNDf2lQ2b94vu6neIJCW2zjkhsdnwi7uzValcBWW_F_l8",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:56:00.700 +02:00 [ERR] Request validation failed
+2018-04-10 22:56:00.703 +02:00 [INF] {
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "AllowedRedirectUris": [
+    "http://localhost:54196/signin-oidc"
+  ],
+  "SubjectId": "anonymous",
+  "RequestedScopes": "",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589905605804127.MGNlMDk1MjktNjE1MS00NTNjLTkzMDAtYjcwNWM4MWYxYzFkN2YwNmNhNzEtYmQ1NS00YWNmLWJjYzItMDRhNGJjYzExODE1",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo1N4YdwF4Zfx5IXDc_qZKD6f4H9eo9gMzGxMxUfyCFU0Nvq7qzTKDaV8ofclhBW_wxDC-aS1seK0KNLvKZLGibUVzPfmgL1gNPkZhOzj3f1ErblWH2X8XO4MERVmXisSzA9LFYubvVGy-Ln9oWycdEr8e1X0vtu6as67JLZQDdLFav7qNiZQqyHcRhF1ogzpvbQzIy6xY4eMXa2Nx9jOEDMXTQYNIXBoSPiihruBBcaJYh_S2fmj3lwH8gfjhfFzE784aLiDrNkmgpPuLdAfdTNDf2lQ2b94vu6neIJCW2zjkhsdnwi7uzValcBWW_F_l8",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:56:00.755 +02:00 [INF] {
+  "Name": "Token Issued Failure",
+  "Category": "Token",
+  "EventType": "Failure",
+  "Id": 2001,
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "Endpoint": "Authorize",
+  "Scopes": "",
+  "Error": "unauthorized_client",
+  "ErrorDescription": "Invalid redirect_uri",
+  "ActivityId": "0HLCV4LRCPH5B:00000003",
+  "TimeStamp": "2018-04-10T20:56:00Z",
+  "ProcessId": 2388,
+  "LocalIpAddress": "127.0.0.1:17352",
+  "RemoteIpAddress": "::1"
+}
+2018-04-10 22:57:27.789 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2018-04-10 22:57:27.852 +02:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-04-10 22:57:27.856 +02:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-04-10 22:57:27.856 +02:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-04-10 22:57:27.856 +02:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-04-10 22:57:27.856 +02:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-04-10 22:57:28.429 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2018-04-10 22:57:28.573 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2018-04-10 22:57:28.573 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2018-04-10 22:57:28.580 +02:00 [DBG] Start discovery request
+2018-04-10 22:57:28.834 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2018-04-10 22:57:28.835 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2018-04-10 22:57:28.835 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2018-04-10 22:57:28.842 +02:00 [DBG] Start key discovery request
+2018-04-10 22:57:28.963 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2018-04-10 22:57:28.968 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2018-04-10 22:57:28.968 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2018-04-10 22:57:28.974 +02:00 [DBG] Start authorize request
+2018-04-10 22:57:28.985 +02:00 [DBG] No user present in authorize request
+2018-04-10 22:57:29.002 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:57:29.021 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:57:29.022 +02:00 [DBG] No PKCE used.
+2018-04-10 22:57:29.041 +02:00 [ERR] Invalid scope: scope_used_for_hybrid_flow
+2018-04-10 22:57:29.048 +02:00 [ERR] Request validation failed
+2018-04-10 22:57:29.066 +02:00 [INF] {
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "AllowedRedirectUris": [
+    "https://localhost:44381/signin-oidc"
+  ],
+  "SubjectId": "anonymous",
+  "ResponseType": "code id_token",
+  "ResponseMode": "form_post",
+  "GrantType": "hybrid",
+  "RequestedScopes": "openid profile scope_used_for_hybrid_flow",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo01V0CjiOzs4vunBTMXpwn2XoI735WM0vsQD42PMr61ZGpeJAGqPPb8MlaxHqxav-c5DBM2tW6__XOXYPb9RPewMyDvN3KpFcxpvkSFC_v6-lB_TsxF18saRrvE5Ac4ECW9kZ7rC7D-R3CyT1PKyTObaNjLYHBsUQ403J3_v1peO43dXnckffr2-KHz5CiXYyK2SWheuMBmudfV9HU5ifQ_iVJdkRrukdTLXUGFqci_MNkPqUDODfy3Bz56vQ_PkyYqn4bH9IFbbsWjuB7HFjCbHNLhx8M_U9gxkOs7y-4VgoI913WGofFhHv3nGQcvMJI",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589906489162548.MjUwZGY0NGUtOTEyMS00OTdjLWFkMGMtYTE4Yzc1Y2JmMTU0YzFlMTkzYWYtMDI3ZS00ZTM3LTliMTYtMDc4NWY3Y2JjNTE1",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo01V0CjiOzs4vunBTMXpwn2XoI735WM0vsQD42PMr61ZGpeJAGqPPb8MlaxHqxav-c5DBM2tW6__XOXYPb9RPewMyDvN3KpFcxpvkSFC_v6-lB_TsxF18saRrvE5Ac4ECW9kZ7rC7D-R3CyT1PKyTObaNjLYHBsUQ403J3_v1peO43dXnckffr2-KHz5CiXYyK2SWheuMBmudfV9HU5ifQ_iVJdkRrukdTLXUGFqci_MNkPqUDODfy3Bz56vQ_PkyYqn4bH9IFbbsWjuB7HFjCbHNLhx8M_U9gxkOs7y-4VgoI913WGofFhHv3nGQcvMJI",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:57:29.122 +02:00 [INF] {
+  "Name": "Token Issued Failure",
+  "Category": "Token",
+  "EventType": "Failure",
+  "Id": 2001,
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "Endpoint": "Authorize",
+  "Scopes": "openid profile scope_used_for_hybrid_flow",
+  "GrantType": "hybrid",
+  "Error": "invalid_scope",
+  "ActivityId": "0HLCV4MLND3EQ:00000003",
+  "TimeStamp": "2018-04-10T20:57:29Z",
+  "ProcessId": 18372,
+  "LocalIpAddress": "127.0.0.1:6650",
+  "RemoteIpAddress": "::1"
+}
+2018-04-10 22:58:37.129 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2018-04-10 22:58:37.179 +02:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-04-10 22:58:37.182 +02:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-04-10 22:58:37.182 +02:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-04-10 22:58:37.182 +02:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-04-10 22:58:37.182 +02:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-04-10 22:58:37.775 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2018-04-10 22:58:37.927 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2018-04-10 22:58:37.928 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2018-04-10 22:58:37.934 +02:00 [DBG] Start discovery request
+2018-04-10 22:58:38.245 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2018-04-10 22:58:38.246 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2018-04-10 22:58:38.247 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2018-04-10 22:58:38.252 +02:00 [DBG] Start key discovery request
+2018-04-10 22:58:38.398 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2018-04-10 22:58:38.404 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2018-04-10 22:58:38.404 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2018-04-10 22:58:38.412 +02:00 [DBG] Start authorize request
+2018-04-10 22:58:38.425 +02:00 [DBG] No user present in authorize request
+2018-04-10 22:58:38.436 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:58:38.458 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:58:38.460 +02:00 [DBG] No PKCE used.
+2018-04-10 22:58:38.511 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 22:58:38.535 +02:00 [INF] ValidatedAuthorizeRequest
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "AllowedRedirectUris": [
+    "https://localhost:44381/signin-oidc"
+  ],
+  "SubjectId": "anonymous",
+  "ResponseType": "code id_token",
+  "ResponseMode": "form_post",
+  "GrantType": "hybrid",
+  "RequestedScopes": "openid profile scope_used_for_hybrid_flow",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+  "Nonce": "636589907183410777.MDBmMTk0ZTMtZDljNS00M2ZjLWI3OGUtMTMzMzNhYzhhZGMzMjJiNzg1OTEtNWJhMi00MDY2LTkxZTctODc5MWY2ZDMyNDE3",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589907183410777.MDBmMTk0ZTMtZDljNS00M2ZjLWI3OGUtMTMzMzNhYzhhZGMzMjJiNzg1OTEtNWJhMi00MDY2LTkxZTctODc5MWY2ZDMyNDE3",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:58:38.560 +02:00 [INF] Showing login: User is not authenticated
+2018-04-10 22:58:38.604 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:58:38.605 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:58:38.605 +02:00 [DBG] No PKCE used.
+2018-04-10 22:58:38.605 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 22:58:45.836 +02:00 [INF] AuthenticationScheme: Identity.External signed in.
+2018-04-10 22:58:45.867 +02:00 [INF] AuthenticationScheme: Identity.External was successfully authenticated.
+2018-04-10 22:58:46.439 +02:00 [INF] {
+  "Name": "User Login Success",
+  "Category": "Authentication",
+  "EventType": "Success",
+  "Id": 1000,
+  "Provider": "Windows",
+  "ProviderUserId": "NOSER\\damien.bowden",
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "DisplayName": "NOSER\\damien.bowden",
+  "Endpoint": "UI",
+  "ActivityId": "0HLCV4NACP18N:00000006",
+  "TimeStamp": "2018-04-10T20:58:46Z",
+  "ProcessId": 23152,
+  "LocalIpAddress": "127.0.0.1:7243",
+  "RemoteIpAddress": "::1"
+}
+2018-04-10 22:58:46.454 +02:00 [DBG] Augmenting SignInContext
+2018-04-10 22:58:46.456 +02:00 [DBG] Adding amr claim with value: external
+2018-04-10 22:58:46.466 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2018-04-10 22:58:46.474 +02:00 [INF] AuthenticationScheme: Identity.External signed out.
+2018-04-10 22:58:46.495 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:46.499 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:46.501 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2018-04-10 22:58:46.502 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2018-04-10 22:58:46.502 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2018-04-10 22:58:46.509 +02:00 [DBG] Start authorize callback request
+2018-04-10 22:58:46.513 +02:00 [DBG] User in authorize request: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 22:58:46.513 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:58:46.513 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:58:46.513 +02:00 [DBG] No PKCE used.
+2018-04-10 22:58:46.514 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 22:58:46.514 +02:00 [INF] ValidatedAuthorizeRequest
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "AllowedRedirectUris": [
+    "https://localhost:44381/signin-oidc"
+  ],
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "ResponseType": "code id_token",
+  "ResponseMode": "form_post",
+  "GrantType": "hybrid",
+  "RequestedScopes": "openid profile scope_used_for_hybrid_flow",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+  "Nonce": "636589907183410777.MDBmMTk0ZTMtZDljNS00M2ZjLWI3OGUtMTMzMzNhYzhhZGMzMjJiNzg1OTEtNWJhMi00MDY2LTkxZTctODc5MWY2ZDMyNDE3",
+  "SessionId": "ea31d4aa6d2cb030d79ce59ffd09354b",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589907183410777.MDBmMTk0ZTMtZDljNS00M2ZjLWI3OGUtMTMzMzNhYzhhZGMzMjJiNzg1OTEtNWJhMi00MDY2LTkxZTctODc5MWY2ZDMyNDE3",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:58:46.557 +02:00 [DBG] user_consent grant with value: hybridclient|a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 not found in store.
+2018-04-10 22:58:46.557 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2018-04-10 22:58:46.557 +02:00 [INF] Showing consent: User has not yet consented
+2018-04-10 22:58:46.572 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:46.576 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:46.602 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:58:46.602 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:58:46.602 +02:00 [DBG] No PKCE used.
+2018-04-10 22:58:46.602 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 22:58:52.597 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2018-04-10 22:58:52.597 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:52.600 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:52.649 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:58:52.649 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:58:52.649 +02:00 [DBG] No PKCE used.
+2018-04-10 22:58:52.649 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 22:58:52.680 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:52.682 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 22:58:52.685 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2018-04-10 22:58:52.685 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2018-04-10 22:58:52.685 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2018-04-10 22:58:52.687 +02:00 [DBG] Start authorize callback request
+2018-04-10 22:58:52.713 +02:00 [DBG] User in authorize request: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 22:58:52.713 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 22:58:52.713 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 22:58:52.713 +02:00 [DBG] No PKCE used.
+2018-04-10 22:58:52.713 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 22:58:52.713 +02:00 [INF] ValidatedAuthorizeRequest
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "AllowedRedirectUris": [
+    "https://localhost:44381/signin-oidc"
+  ],
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "ResponseType": "code id_token",
+  "ResponseMode": "form_post",
+  "GrantType": "hybrid",
+  "RequestedScopes": "openid profile scope_used_for_hybrid_flow",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+  "Nonce": "636589907183410777.MDBmMTk0ZTMtZDljNS00M2ZjLWI3OGUtMTMzMzNhYzhhZGMzMjJiNzg1OTEtNWJhMi00MDY2LTkxZTctODc5MWY2ZDMyNDE3",
+  "SessionId": "ea31d4aa6d2cb030d79ce59ffd09354b",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589907183410777.MDBmMTk0ZTMtZDljNS00M2ZjLWI3OGUtMTMzMzNhYzhhZGMzMjJiNzg1OTEtNWJhMi00MDY2LTkxZTctODc5MWY2ZDMyNDE3",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 22:58:52.734 +02:00 [DBG] user_consent grant with value: hybridclient|a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 not found in store.
+2018-04-10 22:58:52.735 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2018-04-10 22:58:52.745 +02:00 [INF] User consented to scopes: ["openid","profile","scope_used_for_hybrid_flow"]
+2018-04-10 22:58:52.759 +02:00 [DBG] User indicated to remember consent for scopes: ["openid","profile","scope_used_for_hybrid_flow"]
+2018-04-10 22:58:52.763 +02:00 [DBG] Client allows remembering consent, and consent given. Updating consent store for subject: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 22:58:52.777 +02:00 [DBG] Creating Hybrid Flow response.
+2018-04-10 22:58:52.801 +02:00 [DBG] Creating Implicit Flow response.
+2018-04-10 22:58:52.811 +02:00 [DBG] Getting claims for identity token for subject: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 and client: hybridclient
+2018-04-10 22:58:52.814 +02:00 [DBG] In addition to an id_token, an access_token was requested. No claims other than sub are included in the id_token. To obtain more user claims, either use the user info endpoint or set AlwaysIncludeUserClaimsInIdToken on the client configuration.
+2018-04-10 22:58:52.927 +02:00 [INF] {
+  "Name": "Token Issued Success",
+  "Category": "Token",
+  "EventType": "Success",
+  "Id": 2000,
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "Endpoint": "Authorize",
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "Scopes": "openid profile scope_used_for_hybrid_flow",
+  "GrantType": "hybrid",
+  "Tokens": [
+    {
+      "TokenType": "id_token",
+      "TokenValue": "****S66g"
+    },
+    {
+      "TokenType": "code",
+      "TokenValue": "****6776"
+    }
+  ],
+  "ActivityId": "0HLCV4NACP18M:00000005",
+  "TimeStamp": "2018-04-10T20:58:52Z",
+  "ProcessId": 23152,
+  "LocalIpAddress": "127.0.0.1:7243",
+  "RemoteIpAddress": "::1"
+}
+2018-04-10 22:58:52.936 +02:00 [INF] Authorize endpoint response
+{
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "ClientId": "hybridclient",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0r3V55wP5TfBk-2gv3LUQbuhrQXsieMTUvYB-Y5NlLtOBrwoRY8vv2mq09z1WkKfu4pTWsW8WxxGY1_NgcoD6ICigsXQuG1MZuTEJCqU_Q6iBRiCZJDIVDENCBKoZd0fJ5eQ1uy5vq3Y07oFPtfyHWJSTPg-YyiwjTpCG6IDNi-ejsxR7IqiGzDoftz4NbYfhzEacplhSggn696s5LcOdTr4XPz14-GXX7wna034kIDNBBgmteCzdF3Ch4Enm-OOQPO5NhUPwMNKQqL9mfW6c5wt5_olRnpap3xN8YogsNQTC63SrY6Sum9I7446HxsmI",
+  "Scope": "openid profile scope_used_for_hybrid_flow"
+}
+2018-04-10 22:58:52.958 +02:00 [DBG] Augmenting SignInContext
+2018-04-10 22:58:52.959 +02:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2018-04-10 23:00:57.839 +02:00 [INF] You are using the in-memory version of the persisted grant store. This will store consent decisions, authorization codes, refresh and reference tokens in memory only. If you are using any of those features in production, you want to switch to a different store implementation.
+2018-04-10 23:00:57.910 +02:00 [DBG] Using Identity.Application as default scheme for authentication
+2018-04-10 23:00:57.914 +02:00 [DBG] Using Identity.External as default scheme for sign-in
+2018-04-10 23:00:57.914 +02:00 [DBG] Using Identity.External as default scheme for sign-out
+2018-04-10 23:00:57.914 +02:00 [DBG] Using Identity.Application as default scheme for challenge
+2018-04-10 23:00:57.914 +02:00 [DBG] Using Identity.Application as default scheme for forbid
+2018-04-10 23:00:58.411 +02:00 [DBG] Request path /.well-known/openid-configuration matched to endpoint type Discovery
+2018-04-10 23:00:58.525 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryEndpoint
+2018-04-10 23:00:58.525 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryEndpoint for /.well-known/openid-configuration
+2018-04-10 23:00:58.529 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:00:58.531 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:00:58.534 +02:00 [DBG] Start discovery request
+2018-04-10 23:00:58.801 +02:00 [DBG] Request path /.well-known/openid-configuration/jwks matched to endpoint type Discovery
+2018-04-10 23:00:58.802 +02:00 [DBG] Endpoint enabled: Discovery, successfully created handler: IdentityServer4.Endpoints.DiscoveryKeyEndpoint
+2018-04-10 23:00:58.802 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.DiscoveryKeyEndpoint for /.well-known/openid-configuration/jwks
+2018-04-10 23:00:58.808 +02:00 [DBG] Start key discovery request
+2018-04-10 23:00:58.921 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:00:58.923 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:00:58.926 +02:00 [DBG] Request path /connect/authorize matched to endpoint type Authorize
+2018-04-10 23:00:58.931 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeEndpoint
+2018-04-10 23:00:58.931 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeEndpoint for /connect/authorize
+2018-04-10 23:00:58.938 +02:00 [DBG] Start authorize request
+2018-04-10 23:00:58.953 +02:00 [DBG] User in authorize request: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 23:00:58.957 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 23:00:58.971 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 23:00:58.973 +02:00 [DBG] No PKCE used.
+2018-04-10 23:00:59.015 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 23:00:59.032 +02:00 [INF] ValidatedAuthorizeRequest
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "AllowedRedirectUris": [
+    "https://localhost:44381/signin-oidc"
+  ],
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "ResponseType": "code id_token",
+  "ResponseMode": "form_post",
+  "GrantType": "hybrid",
+  "RequestedScopes": "openid profile scope_used_for_hybrid_flow",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0n4QThL4WZiM0GbvGXMeKFNBN2ooQiWU47JvE_3cwm0wFwd6pQ40viwGtE5LZKOaTzJnJluKVBVIc5FaGPEUn77dyqqWdi5qZI8VV1zfaGrLHnthsnuzCKeRL7O-vMeY36I3kbtJiCzOHu7qfdTE3to9j052Qafk-IAXK3efTw8X_Vj22WkyhJmM-jcSyRLz1gCwUdOsIH_EjnMlwa_j9H8S64ZbV_rMdoij3ig0SDe4LJ5YxPYFwcY-WIjHWad5L7hanTxLnF74wsB8StEVKfmyY9U_AA9RLF1_OyzZ6A_bvhVirGFHj8QPwSAuJCym0",
+  "Nonce": "636589908588723822.ZjFhMWY2YzYtZGRmNS00Mzg1LWJkZDMtYjgwNmJhMDNiNzkzMzdmYTAzNDItZTc4NS00MjA0LWE2NzQtOWY5ZmRlOTcyN2I1",
+  "SessionId": "ea31d4aa6d2cb030d79ce59ffd09354b",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589908588723822.ZjFhMWY2YzYtZGRmNS00Mzg1LWJkZDMtYjgwNmJhMDNiNzkzMzdmYTAzNDItZTc4NS00MjA0LWE2NzQtOWY5ZmRlOTcyN2I1",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0n4QThL4WZiM0GbvGXMeKFNBN2ooQiWU47JvE_3cwm0wFwd6pQ40viwGtE5LZKOaTzJnJluKVBVIc5FaGPEUn77dyqqWdi5qZI8VV1zfaGrLHnthsnuzCKeRL7O-vMeY36I3kbtJiCzOHu7qfdTE3to9j052Qafk-IAXK3efTw8X_Vj22WkyhJmM-jcSyRLz1gCwUdOsIH_EjnMlwa_j9H8S64ZbV_rMdoij3ig0SDe4LJ5YxPYFwcY-WIjHWad5L7hanTxLnF74wsB8StEVKfmyY9U_AA9RLF1_OyzZ6A_bvhVirGFHj8QPwSAuJCym0",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 23:00:59.470 +02:00 [DBG] user_consent grant with value: hybridclient|a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 not found in store.
+2018-04-10 23:00:59.470 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2018-04-10 23:00:59.470 +02:00 [INF] Showing consent: User has not yet consented
+2018-04-10 23:00:59.490 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:00:59.492 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:00:59.540 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 23:00:59.540 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 23:00:59.541 +02:00 [DBG] No PKCE used.
+2018-04-10 23:00:59.541 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 23:01:08.547 +02:00 [DBG] CORS request made for path: /consent from origin: null but was ignored because path was not for an allowed IdentityServer CORS endpoint
+2018-04-10 23:01:08.547 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:01:08.551 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:01:08.598 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 23:01:08.598 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 23:01:08.598 +02:00 [DBG] No PKCE used.
+2018-04-10 23:01:08.599 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 23:01:08.637 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:01:08.639 +02:00 [INF] AuthenticationScheme: Identity.Application was successfully authenticated.
+2018-04-10 23:01:08.641 +02:00 [DBG] Request path /connect/authorize/callback matched to endpoint type Authorize
+2018-04-10 23:01:08.642 +02:00 [DBG] Endpoint enabled: Authorize, successfully created handler: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint
+2018-04-10 23:01:08.642 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.AuthorizeCallbackEndpoint for /connect/authorize/callback
+2018-04-10 23:01:08.650 +02:00 [DBG] Start authorize callback request
+2018-04-10 23:01:08.674 +02:00 [DBG] User in authorize request: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 23:01:08.674 +02:00 [DBG] Start authorize request protocol validation
+2018-04-10 23:01:08.674 +02:00 [DBG] Checking for PKCE parameters
+2018-04-10 23:01:08.674 +02:00 [DBG] No PKCE used.
+2018-04-10 23:01:08.675 +02:00 [DBG] Calling into custom validator: IdentityServer4.Validation.DefaultCustomAuthorizeRequestValidator
+2018-04-10 23:01:08.675 +02:00 [INF] ValidatedAuthorizeRequest
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "AllowedRedirectUris": [
+    "https://localhost:44381/signin-oidc"
+  ],
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "ResponseType": "code id_token",
+  "ResponseMode": "form_post",
+  "GrantType": "hybrid",
+  "RequestedScopes": "openid profile scope_used_for_hybrid_flow",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0n4QThL4WZiM0GbvGXMeKFNBN2ooQiWU47JvE_3cwm0wFwd6pQ40viwGtE5LZKOaTzJnJluKVBVIc5FaGPEUn77dyqqWdi5qZI8VV1zfaGrLHnthsnuzCKeRL7O-vMeY36I3kbtJiCzOHu7qfdTE3to9j052Qafk-IAXK3efTw8X_Vj22WkyhJmM-jcSyRLz1gCwUdOsIH_EjnMlwa_j9H8S64ZbV_rMdoij3ig0SDe4LJ5YxPYFwcY-WIjHWad5L7hanTxLnF74wsB8StEVKfmyY9U_AA9RLF1_OyzZ6A_bvhVirGFHj8QPwSAuJCym0",
+  "Nonce": "636589908588723822.ZjFhMWY2YzYtZGRmNS00Mzg1LWJkZDMtYjgwNmJhMDNiNzkzMzdmYTAzNDItZTc4NS00MjA0LWE2NzQtOWY5ZmRlOTcyN2I1",
+  "SessionId": "ea31d4aa6d2cb030d79ce59ffd09354b",
+  "Raw": {
+    "client_id": "hybridclient",
+    "redirect_uri": "https://localhost:44381/signin-oidc",
+    "response_type": "code id_token",
+    "scope": "openid profile scope_used_for_hybrid_flow",
+    "response_mode": "form_post",
+    "nonce": "636589908588723822.ZjFhMWY2YzYtZGRmNS00Mzg1LWJkZDMtYjgwNmJhMDNiNzkzMzdmYTAzNDItZTc4NS00MjA0LWE2NzQtOWY5ZmRlOTcyN2I1",
+    "state": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0n4QThL4WZiM0GbvGXMeKFNBN2ooQiWU47JvE_3cwm0wFwd6pQ40viwGtE5LZKOaTzJnJluKVBVIc5FaGPEUn77dyqqWdi5qZI8VV1zfaGrLHnthsnuzCKeRL7O-vMeY36I3kbtJiCzOHu7qfdTE3to9j052Qafk-IAXK3efTw8X_Vj22WkyhJmM-jcSyRLz1gCwUdOsIH_EjnMlwa_j9H8S64ZbV_rMdoij3ig0SDe4LJ5YxPYFwcY-WIjHWad5L7hanTxLnF74wsB8StEVKfmyY9U_AA9RLF1_OyzZ6A_bvhVirGFHj8QPwSAuJCym0",
+    "x-client-SKU": "ID_NETSTANDARD1_4",
+    "x-client-ver": "5.2.0.0"
+  }
+}
+2018-04-10 23:01:08.700 +02:00 [DBG] user_consent grant with value: hybridclient|a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 not found in store.
+2018-04-10 23:01:08.700 +02:00 [DBG] Found no prior consent from consent store, consent is required
+2018-04-10 23:01:08.710 +02:00 [INF] User consented to scopes: ["openid","profile","scope_used_for_hybrid_flow"]
+2018-04-10 23:01:08.723 +02:00 [DBG] User indicated to remember consent for scopes: ["openid","profile","scope_used_for_hybrid_flow"]
+2018-04-10 23:01:08.726 +02:00 [DBG] Client allows remembering consent, and consent given. Updating consent store for subject: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 23:01:08.745 +02:00 [DBG] Creating Hybrid Flow response.
+2018-04-10 23:01:08.776 +02:00 [DBG] Creating Implicit Flow response.
+2018-04-10 23:01:08.785 +02:00 [DBG] Getting claims for identity token for subject: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 and client: hybridclient
+2018-04-10 23:01:08.788 +02:00 [DBG] In addition to an id_token, an access_token was requested. No claims other than sub are included in the id_token. To obtain more user claims, either use the user info endpoint or set AlwaysIncludeUserClaimsInIdToken on the client configuration.
+2018-04-10 23:01:08.895 +02:00 [INF] {
+  "Name": "Token Issued Success",
+  "Category": "Token",
+  "EventType": "Success",
+  "Id": 2000,
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "Endpoint": "Authorize",
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "Scopes": "openid profile scope_used_for_hybrid_flow",
+  "GrantType": "hybrid",
+  "Tokens": [
+    {
+      "TokenType": "id_token",
+      "TokenValue": "****nsDA"
+    },
+    {
+      "TokenType": "code",
+      "TokenValue": "****ce9a"
+    }
+  ],
+  "ActivityId": "0HLCV4OK9L8RB:00000002",
+  "TimeStamp": "2018-04-10T21:01:08Z",
+  "ProcessId": 25528,
+  "LocalIpAddress": "127.0.0.1:7661",
+  "RemoteIpAddress": "::1"
+}
+2018-04-10 23:01:08.904 +02:00 [INF] Authorize endpoint response
+{
+  "SubjectId": "a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72",
+  "ClientId": "hybridclient",
+  "RedirectUri": "https://localhost:44381/signin-oidc",
+  "State": "CfDJ8I-FbvFDDpNFrXLuCTxiLo0n4QThL4WZiM0GbvGXMeKFNBN2ooQiWU47JvE_3cwm0wFwd6pQ40viwGtE5LZKOaTzJnJluKVBVIc5FaGPEUn77dyqqWdi5qZI8VV1zfaGrLHnthsnuzCKeRL7O-vMeY36I3kbtJiCzOHu7qfdTE3to9j052Qafk-IAXK3efTw8X_Vj22WkyhJmM-jcSyRLz1gCwUdOsIH_EjnMlwa_j9H8S64ZbV_rMdoij3ig0SDe4LJ5YxPYFwcY-WIjHWad5L7hanTxLnF74wsB8StEVKfmyY9U_AA9RLF1_OyzZ6A_bvhVirGFHj8QPwSAuJCym0",
+  "Scope": "openid profile scope_used_for_hybrid_flow"
+}
+2018-04-10 23:01:09.034 +02:00 [DBG] Request path /connect/token matched to endpoint type Token
+2018-04-10 23:01:09.039 +02:00 [DBG] Endpoint enabled: Token, successfully created handler: IdentityServer4.Endpoints.TokenEndpoint
+2018-04-10 23:01:09.039 +02:00 [INF] Invoking IdentityServer endpoint: IdentityServer4.Endpoints.TokenEndpoint for /connect/token
+2018-04-10 23:01:09.051 +02:00 [DBG] Start token request.
+2018-04-10 23:01:09.060 +02:00 [DBG] Start client validation
+2018-04-10 23:01:09.065 +02:00 [DBG] Start parsing Basic Authentication secret
+2018-04-10 23:01:09.069 +02:00 [DBG] Start parsing for secret in post body
+2018-04-10 23:01:09.069 +02:00 [DBG] Parser found secret: PostBodySecretParser
+2018-04-10 23:01:09.069 +02:00 [DBG] Secret id found: hybridclient
+2018-04-10 23:01:09.082 +02:00 [DBG] Secret validator success: HashedSharedSecretValidator
+2018-04-10 23:01:09.083 +02:00 [DBG] Client validation success
+2018-04-10 23:01:09.089 +02:00 [INF] {
+  "Name": "Client Authentication Success",
+  "Category": "Authentication",
+  "EventType": "Success",
+  "Id": 1010,
+  "ClientId": "hybridclient",
+  "AuthenticationMethod": "SharedSecret",
+  "ActivityId": "0HLCV4OK9L8RD:00000006",
+  "TimeStamp": "2018-04-10T21:01:09Z",
+  "ProcessId": 25528,
+  "LocalIpAddress": "127.0.0.1:7661",
+  "RemoteIpAddress": "127.0.0.1"
+}
+2018-04-10 23:01:09.098 +02:00 [DBG] Start token request validation
+2018-04-10 23:01:09.109 +02:00 [DBG] Start validation of authorization code token request
+2018-04-10 23:01:09.146 +02:00 [DBG] Validation of authorization code token request success
+2018-04-10 23:01:09.151 +02:00 [INF] Token request validation success
+{
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "GrantType": "authorization_code",
+  "AuthorizationCode": "88a4c9a2eda4c2174168af17fc66748a8d1c44b05cec5a9f53a0d0ee96c0ce9a",
+  "Raw": {
+    "client_id": "hybridclient",
+    "client_secret": "***REDACTED***",
+    "code": "88a4c9a2eda4c2174168af17fc66748a8d1c44b05cec5a9f53a0d0ee96c0ce9a",
+    "grant_type": "authorization_code",
+    "redirect_uri": "https://localhost:44381/signin-oidc"
+  }
+}
+2018-04-10 23:01:09.176 +02:00 [DBG] Getting claims for access token for client: hybridclient
+2018-04-10 23:01:09.177 +02:00 [DBG] Getting claims for access token for subject: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72
+2018-04-10 23:01:09.295 +02:00 [DBG] Getting claims for identity token for subject: a7cd6ff8-74b1-4fba-b4bf-85ab3b5cdd72 and client: hybridclient
+2018-04-10 23:01:09.295 +02:00 [DBG] In addition to an id_token, an access_token was requested. No claims other than sub are included in the id_token. To obtain more user claims, either use the user info endpoint or set AlwaysIncludeUserClaimsInIdToken on the client configuration.
+2018-04-10 23:01:09.299 +02:00 [INF] {
+  "Name": "Token Issued Success",
+  "Category": "Token",
+  "EventType": "Success",
+  "Id": 2000,
+  "ClientId": "hybridclient",
+  "ClientName": "MVC Client",
+  "Endpoint": "Token",
+  "Scopes": "openid profile scope_used_for_hybrid_flow",
+  "GrantType": "authorization_code",
+  "Tokens": [
+    {
+      "TokenType": "id_token",
+      "TokenValue": "****1SbA"
+    },
+    {
+      "TokenType": "access_token",
+      "TokenValue": "****Eexw"
+    }
+  ],
+  "ActivityId": "0HLCV4OK9L8RD:00000006",
+  "TimeStamp": "2018-04-10T21:01:09Z",
+  "ProcessId": 25528,
+  "LocalIpAddress": "127.0.0.1:7661",
+  "RemoteIpAddress": "127.0.0.1"
+}
+2018-04-10 23:01:09.304 +02:00 [DBG] Token request success.
