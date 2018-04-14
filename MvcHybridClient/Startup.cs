@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -58,7 +59,14 @@ namespace MvcHybridClient
                 };
             });
 
-            services.AddAuthorization();
+            var requireWindowsProviderPolicy = new AuthorizationPolicyBuilder()
+                  .RequireClaim("http://schemas.microsoft.com/identity/claims/identityprovider", "Windows")
+                  .Build();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("RequireWindowsProviderPolicy", requireWindowsProviderPolicy);
+            });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

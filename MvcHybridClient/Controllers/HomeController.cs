@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using MvcHybridClient.Models;
@@ -14,28 +10,13 @@ namespace MvcHybridClient.Controllers
     {
         public IActionResult Index()
         {
-            //windows => claim http://schemas.microsoft.com/identity/claims/identityprovider
-            var claimIdentityprovider = User.Claims.FirstOrDefault(t => t.Type == "http://schemas.microsoft.com/identity/claims/identityprovider");
+            //Windows or local => claim http://schemas.microsoft.com/identity/claims/identityprovider
+            //var claimIdentityprovider = User.Claims.FirstOrDefault(t => t.Type == "http://schemas.microsoft.com/identity/claims/identityprovider");
 
-            var name = User.Claims.FirstOrDefault(t => t.Type == "name");
-            if (claimIdentityprovider != null && claimIdentityprovider.Value == "Windows")
-            {
-                // DO some admin stuff
-            }
-
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            //if (claimIdentityprovider != null && claimIdentityprovider.Value == "Windows")
+            //{
+            //    // Admin stuff allowed
+            //}
 
             return View();
         }
