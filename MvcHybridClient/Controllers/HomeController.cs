@@ -14,6 +14,15 @@ namespace MvcHybridClient.Controllers
     {
         public IActionResult Index()
         {
+            //windows => claim http://schemas.microsoft.com/identity/claims/identityprovider
+            var claimIdentityprovider = User.Claims.FirstOrDefault(t => t.Type == "http://schemas.microsoft.com/identity/claims/identityprovider");
+
+            var name = User.Claims.FirstOrDefault(t => t.Type == "name");
+            if (claimIdentityprovider != null && claimIdentityprovider.Value == "Windows")
+            {
+                // DO some admin stuff
+            }
+
             return View();
         }
 

@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,8 +45,10 @@ namespace MvcHybridClient
                 options.ClientId = "hybridclient";
                 options.ClientSecret = "hybrid_flow_secret";
                 options.ResponseType = "code id_token";
+                options.GetClaimsFromUserInfoEndpoint = true;
                 options.Scope.Add("scope_used_for_hybrid_flow");
                 options.Scope.Add("profile");
+                options.Scope.Add("offline_access");
                 options.SaveTokens = true;
             });
 
