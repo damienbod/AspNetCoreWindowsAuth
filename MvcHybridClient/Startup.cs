@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
 
 namespace MvcHybridClient
 {
@@ -30,7 +32,6 @@ namespace MvcHybridClient
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -50,6 +51,11 @@ namespace MvcHybridClient
                 options.Scope.Add("profile");
                 options.Scope.Add("offline_access");
                 options.SaveTokens = true;
+                // Set the correct name claim type
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    NameClaimType = "name"
+                };
             });
 
             services.AddAuthorization();
