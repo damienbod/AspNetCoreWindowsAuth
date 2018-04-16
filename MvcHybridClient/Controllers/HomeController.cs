@@ -8,6 +8,7 @@ using MvcHybridClient.Models;
 
 namespace MvcHybridClient.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         private IAppAuthorizationService _appAuthorizationService;
