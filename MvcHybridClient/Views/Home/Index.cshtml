@@ -8,7 +8,7 @@
 
 @if ((await AuthorizationService.AuthorizeAsync(User, "RequireWindowsProviderPolicy")).Succeeded)
 {
-    <p>Hi Admin, you logged in with an internal Windows account</p>
+    <p>Hi User, you logged in with an internal Windows account</p>
 }
 else
 {
