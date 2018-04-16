@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
+﻿using AppAuthorizationService;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
@@ -59,13 +60,16 @@ namespace MvcHybridClient
                 };
             });
 
-            var requireWindowsProviderPolicy = new AuthorizationPolicyBuilder()
-                  .RequireClaim("http://schemas.microsoft.com/identity/claims/identityprovider", "Windows")
-                  .Build();
+            services.AddSingleton<IAppAuthorizationService, AppAuthorizationService.AppAuthorizationService>();
+            services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
 
             services.AddAuthorization(options =>
             {
-                options.AddPolicy("RequireWindowsProviderPolicy", requireWindowsProviderPolicy);
+                options.AddPolicy("RequireWindowsProviderPolicy", MyPolicies.GetRequireWindowsProviderPolicy());
+                options.AddPolicy("IsAdminRequirementPolicy", policyIsAdminRequirement =>
+                {
+                    policyIsAdminRequirement.Requirements.Add(new IsAdminRequirement());
+                });
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
