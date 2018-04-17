@@ -2,7 +2,5 @@
  
 namespace AppAuthorizationService
 {
-    public class IsAdminRequirement : IAuthorizationRequirement
-    {
-    }
+    public class IsAdminRequirement : IAuthorizationRequirement{}
 }
