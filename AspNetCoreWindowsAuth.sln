@@ -9,7 +9,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StsServer", "StsServer\StsS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcHybridClient", "MvcHybridClient\MvcHybridClient.csproj", "{5F041E69-991A-451E-881C-8BDDB7324DB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AppAuthorizationService", "AuthorizationService\AppAuthorizationService.csproj", "{7E39F153-7C3A-475F-8A3B-C3956E53A202}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppAuthorizationService", "AuthorizationService\AppAuthorizationService.csproj", "{7E39F153-7C3A-475F-8A3B-C3956E53A202}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{009C22E9-3D94-4A41-8883-0D81FC9A6C1A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
