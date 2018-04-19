@@ -7,7 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AspNetCoreWindowsAuth", "As
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StsServer", "StsServer\StsServer.csproj", "{DBDA1674-80CA-473C-8FBC-0E77937C24D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MvcHybridClient", "MvcHybridClient\MvcHybridClient.csproj", "{5F041E69-991A-451E-881C-8BDDB7324DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MvcHybridClient", "MvcHybridClient\MvcHybridClient.csproj", "{5F041E69-991A-451E-881C-8BDDB7324DB5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AppAuthorizationService", "AuthorizationService\AppAuthorizationService.csproj", "{7E39F153-7C3A-475F-8A3B-C3956E53A202}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{009C22E9-3D94-4A41-8883-0D81FC9A6C1A}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +34,10 @@ Global
 		{5F041E69-991A-451E-881C-8BDDB7324DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5F041E69-991A-451E-881C-8BDDB7324DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5F041E69-991A-451E-881C-8BDDB7324DB5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
