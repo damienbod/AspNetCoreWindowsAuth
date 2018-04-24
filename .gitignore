@@ -2,3 +2,4 @@
 **/obj/*
 /.vs
 /StsServer/identityserver4_log.txt
+/Logs
