@@ -15,9 +15,9 @@ namespace NativeConsolePKCEClient
         static OidcClient _oidcClient;
         static HttpClient _apiClient = new HttpClient { BaseAddress = new Uri(_api) };
 
-        public static void Main(string[] args) => MainAsync().GetAwaiter().GetResult();
+        public static void Main(string[] args) => RunAsync().GetAwaiter().GetResult();
 
-        public static async Task MainAsync()
+        public static async Task RunAsync()
         {
             await SignIn();
         }
