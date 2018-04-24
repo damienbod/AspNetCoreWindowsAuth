@@ -22,7 +22,14 @@ namespace StsServer
         {
             return new ApiResource[]
             {
-                new ApiResource("scope_used_for_hybrid_flow", "Mvc Hybrid Client")
+                new ApiResource("scope_used_for_hybrid_flow", "Mvc Hybrid Client"),
+                new ApiResource("native_api", "Native Client API")
+                {
+                    ApiSecrets =
+                    {
+                        new Secret("native_api_secret".Sha256())
+                    }
+                }
             };
         }
 
@@ -45,7 +52,24 @@ namespace StsServer
 
                     AllowOfflineAccess = true,
                     AllowedScopes = { "openid", "profile", "offline_access",  "scope_used_for_hybrid_flow" }
-                }
+                },
+                new Client
+                {
+                    ClientId = "native.code",
+                    ClientName = "Native Client (Code with PKCE)",
+
+                    RedirectUris = { "http://127.0.0.1:45656" },
+                    PostLogoutRedirectUris = { "http://127.0.0.1:45656" },
+
+                    RequireClientSecret = false,
+
+                    AllowedGrantTypes = GrantTypes.Code,
+                    RequirePkce = true,
+                    AllowedScopes = { "openid", "profile", "email", "native_api" },
+
+                    AllowOfflineAccess = true,
+                    RefreshTokenUsage = TokenUsage.ReUse
+                 }
             };
         }
     }
