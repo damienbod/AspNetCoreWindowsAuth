@@ -19,10 +19,10 @@ namespace NativeConsolePKCEClient
 
         public static async Task RunAsync()
         {
-            await SignIn();
+            await Login();
         }
 
-        private static async Task SignIn()
+        private static async Task Login()
         {
             var browser = new SystemBrowser(45656);
             string redirectUri = "http://127.0.0.1:45656";
