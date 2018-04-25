@@ -16,6 +16,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeConsolePKCEClient", "NativeConsolePKCEClient\NativeConsolePKCEClient.csproj", "{B3CFB800-4189-40EC-95BE-5551841B041D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{80DC6575-BEDD-4B46-A9B6-7FF9794A13DB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +42,14 @@ Global
 		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E39F153-7C3A-475F-8A3B-C3956E53A202}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3CFB800-4189-40EC-95BE-5551841B041D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3CFB800-4189-40EC-95BE-5551841B041D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3CFB800-4189-40EC-95BE-5551841B041D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3CFB800-4189-40EC-95BE-5551841B041D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80DC6575-BEDD-4B46-A9B6-7FF9794A13DB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80DC6575-BEDD-4B46-A9B6-7FF9794A13DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80DC6575-BEDD-4B46-A9B6-7FF9794A13DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80DC6575-BEDD-4B46-A9B6-7FF9794A13DB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
