@@ -38,11 +38,13 @@ namespace MvcHybridClient
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
             .AddCookie()
             .AddOpenIdConnect(options =>
             {
                 options.SignInScheme = "Cookies";
+                options.SignOutScheme = "OpenIdConnect";
                 options.Authority = stsServer;
                 options.RequireHttpsMetadata = true;
                 options.ClientId = "hybridclient";
