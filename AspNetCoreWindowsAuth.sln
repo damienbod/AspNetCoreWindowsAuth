@@ -16,7 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NativeConsolePKCEClient", "NativeConsolePKCEClient\NativeConsolePKCEClient.csproj", "{B3CFB800-4189-40EC-95BE-5551841B041D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NativeConsolePKCEClient", "NativeConsolePKCEClient\NativeConsolePKCEClient.csproj", "{B3CFB800-4189-40EC-95BE-5551841B041D}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{80DC6575-BEDD-4B46-A9B6-7FF9794A13DB}"
 EndProject
