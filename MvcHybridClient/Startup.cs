@@ -64,7 +64,7 @@ namespace MvcHybridClient
 
             services.AddSingleton<IAppAuthorizationService, AppAuthorizationService.AppAuthorizationService>();
             services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
-
+            services.AddSingleton<IAuthorizationHandler, BobIsAnAdmin>();
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireWindowsProviderPolicy", MyPolicies.GetRequireWindowsProviderPolicy());
