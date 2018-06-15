@@ -7,4 +7,6 @@
 
  # History
 
+ 2018-05-15 Updated to .NET Core 2.1
+
  2018-05-08 Updated to .NET Core 2.1 rc1
