@@ -1,5 +1,4 @@
 ﻿@using IdentityServer4.Extensions
-@using StsServer.Models
 @{
     string name = null;
     if (!true.Equals(ViewData["signed-out"]))
@@ -7,9 +6,6 @@
         name = Context.User?.GetDisplayName();
     }
 }
-@using Microsoft.AspNetCore.Identity
-@inject SignInManager<ApplicationUser> SignInManager
-@inject UserManager<ApplicationUser> UserManager
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,11 +36,11 @@
                 </a>
             </div>
 
-            @if (SignInManager.IsSignedIn(User))
+            @if (!string.IsNullOrWhiteSpace(name))
             {
                 <ul class="nav navbar-nav">
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@UserManager.GetUserName(User) <b class="caret"></b></a>
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">@name <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a asp-action="Logout" asp-controller="Account">Logout</a></li>
                         </ul>
