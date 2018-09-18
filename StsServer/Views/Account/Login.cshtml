@@ -1,5 +1,8 @@
 ﻿@model LoginViewModel
-
+@{
+    // set this so the layout rendering sees an anonymous user
+    ViewData["signed-out"] = true;
+}
 <div class="login-page">
     <div class="page-header">
         <h1>Login</h1>

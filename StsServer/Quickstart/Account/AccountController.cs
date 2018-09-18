@@ -19,6 +19,8 @@ using IdentityModel;
 using System.Linq;
 using System;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Server.IISIntegration;
+using Microsoft.AspNetCore.Server.HttpSys;
 
 namespace IdentityServer4.Quickstart.UI
 {
@@ -239,7 +241,7 @@ namespace IdentityServer4.Quickstart.UI
             var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
 
             if (User?.Identity.IsAuthenticated == true)
-            {
+            {              
                 // delete local authentication cookie
                 await _signInManager.SignOutAsync();
 
