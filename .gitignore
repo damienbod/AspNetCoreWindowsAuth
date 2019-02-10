@@ -3,3 +3,4 @@
 /.vs
 /StsServer/identityserver4_log.txt
 /Logs
+/MvcHybridClient/node_modules
