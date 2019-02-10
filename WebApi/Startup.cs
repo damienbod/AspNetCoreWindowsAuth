@@ -15,14 +15,6 @@ namespace WebApi
     {
         public Startup(IConfiguration configuration)
         {
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Verbose()
-                .Enrich.WithProperty("App", "WebAPI")
-                .Enrich.FromLogContext()
-                .WriteTo.Seq("http://localhost:5341")
-                .WriteTo.RollingFile("../Logs/WebAPI")
-                .CreateLogger();
-
             Configuration = configuration;
         }
 
@@ -47,13 +39,11 @@ namespace WebApi
                 })
             );
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
             loggerFactory.AddSerilog();
 
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
