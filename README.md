@@ -7,6 +7,8 @@
 
  # History
 
+ 2019-05-02 Updated npm packages, nuget packages
+
  2019-02-10 Updated to .NET Core 2.2, bootstrap 4
 
  2018-09-17 Updated to .NET Core 2.1.4
