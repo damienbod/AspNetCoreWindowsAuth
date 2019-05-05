@@ -7,7 +7,7 @@
 
  # History
 
- 2019-05-02 Updated to in-process hosting, improved configuration
+ 2019-05-05 Updated to in-process hosting, improved configuration
 
  2019-05-02 Updated npm packages, nuget packages
 
