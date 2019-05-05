@@ -7,6 +7,8 @@
 
  # History
 
+ 2019-05-02 Updated to in-process hosting, improved configuration
+
  2019-05-02 Updated npm packages, nuget packages
 
  2019-02-10 Updated to .NET Core 2.2, bootstrap 4

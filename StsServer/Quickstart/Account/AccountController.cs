@@ -286,11 +286,12 @@ namespace IdentityServer4.Quickstart.UI
 
             var providers = schemes
                 .Where(x => x.DisplayName != null ||
-                            (x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName, StringComparison.OrdinalIgnoreCase))
+                            (x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName, 
+                            StringComparison.OrdinalIgnoreCase))
                 )
                 .Select(x => new ExternalProvider
                 {
-                    DisplayName = x.DisplayName,
+                    DisplayName = GetDisplayName(x),
                     AuthenticationScheme = x.Name
                 }).ToList();
 
@@ -315,8 +316,19 @@ namespace IdentityServer4.Quickstart.UI
                 EnableLocalLogin = allowLocal && AccountOptions.AllowLocalLogin,
                 ReturnUrl = returnUrl,
                 Username = context?.LoginHint,
-                ExternalProviders = providers.ToArray()
+                ExternalProviders = providers
             };
+        }
+
+        private string GetDisplayName(AuthenticationScheme authenticationScheme)
+        {
+            if(authenticationScheme.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName,
+                            StringComparison.OrdinalIgnoreCase))
+            {
+                return AccountOptions.WindowsAuthenticationSchemeName;
+            }
+
+            return authenticationScheme.DisplayName;
         }
 
         private async Task<LoginViewModel> BuildLoginViewModelAsync(LoginInputModel model)
