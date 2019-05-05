@@ -4,6 +4,7 @@
 
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
 using System;
@@ -28,7 +29,7 @@ namespace StsServer
             try
             {
                 Log.Information("Starting web host");
-                var host = BuildWebHost(args);
+                var host = CreateWebHostBuilder(args).Build();
 
                 if (seed)
                 {
@@ -51,17 +52,26 @@ namespace StsServer
             }
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseKestrel(c => c.AddServerHeader = false)
-                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                    .ReadFrom.Configuration(hostingContext.Configuration)
-                    .Enrich.FromLogContext()
-                     .MinimumLevel.Debug()
-                    .WriteTo.Console()
-                    .WriteTo.Seq("http://localhost:5341")
-                    .WriteTo.RollingFile("../Logs/STS"))
-            .Build();
-    }
+            .UseStartup<Startup>()
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                var builder = config.Build();
+
+                IHostingEnvironment env = context.HostingEnvironment;
+
+                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                        .AddEnvironmentVariables();
+            })
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
+                .Enrich.FromLogContext()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.Seq("http://localhost:5341")
+                .WriteTo.File("../Logs/STS"));
+
+            }
 }

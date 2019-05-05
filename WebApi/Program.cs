@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Serilog;
 using Serilog.Events;
+
 namespace WebApi
 {
     public class Program
@@ -19,7 +20,7 @@ namespace WebApi
             try
             {
                 Log.Information("Starting web host");
-                BuildWebHost(args).Run();
+                CreateWebHostBuilder(args).Build().Run();
                 return 0;
             }
             catch (Exception ex)
@@ -33,17 +34,26 @@ namespace WebApi
             }
         }
 
-        public static IWebHost BuildWebHost(string[] args) =>
+        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
-                .UseStartup<Startup>()
-                .UseKestrel(c => c.AddServerHeader = false)
-                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                    .ReadFrom.Configuration(hostingContext.Configuration)
-                    .Enrich.FromLogContext()
-                     .MinimumLevel.Debug()
-                    .WriteTo.Console()
-                    .WriteTo.Seq("http://localhost:5341")
-                    .WriteTo.RollingFile("../Logs/WebAPI"))
-            .Build();
+            .UseStartup<Startup>()
+            .ConfigureAppConfiguration((context, config) =>
+            {
+                var builder = config.Build();
+
+                IHostingEnvironment env = context.HostingEnvironment;
+
+                config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                    .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true, reloadOnChange: true)
+                        .AddEnvironmentVariables();
+            })
+            .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
+                .Enrich.FromLogContext()
+                .MinimumLevel.Debug()
+                .WriteTo.Console()
+                .WriteTo.Seq("http://localhost:5341")
+                .WriteTo.File("../Logs/WebApi"));
+
     }
 }
