@@ -43,7 +43,7 @@ namespace MvcHybridClient
                     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                     .ReadFrom.Configuration(hostingContext.Configuration)
                     .Enrich.FromLogContext()
-                    .WriteTo.File("../StsLogs.txt")
+                    .WriteTo.File("../_log_hybridclient.txt")
                     .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                 );
                 });

@@ -10,6 +10,7 @@ namespace WebApi.Controllers
     public class ValuesController : Controller
     {
         [HttpGet]
+        [Route("")]
         public IEnumerable<string> Get()
         {
             return new string[] { "data 1 from the api for the native application", "data 2 from the api for the native application" };

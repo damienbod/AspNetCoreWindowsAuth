@@ -29,6 +29,13 @@ namespace StsServer
                     {
                         new Secret("native_api_secret".Sha256())
                     }
+                    //Scopes =
+                    //{
+                    //    new Scope
+                    //    {
+                    //        Name = "native_api"
+                    //    }
+                    //}
                 }
             };
         }

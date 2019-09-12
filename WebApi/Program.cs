@@ -43,7 +43,8 @@ namespace WebApi
                     .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
                     .ReadFrom.Configuration(hostingContext.Configuration)
                     .Enrich.FromLogContext()
-                    .WriteTo.File("../StsLogs.txt")
+                    .WriteTo.File("../_log_api.txt")
+                    .MinimumLevel.Debug()
                     .WriteTo.Console(theme: AnsiConsoleTheme.Code)
                 );
                 });

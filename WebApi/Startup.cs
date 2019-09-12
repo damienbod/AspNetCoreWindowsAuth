@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Logging;
 
 namespace WebApi
 {
@@ -43,6 +44,8 @@ namespace WebApi
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            IdentityModelEventSource.ShowPII = true;
+
             JwtSecurityTokenHandler.DefaultInboundClaimTypeMap.Clear();
 
             if (env.IsDevelopment())
@@ -72,6 +75,7 @@ namespace WebApi
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
