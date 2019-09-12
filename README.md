@@ -7,6 +7,8 @@
 
  # History
 
+ 2019-09-12 Updated to .NET Core 3.0, IdentityServer4 3.0
+
  2019-05-05 Updated to in-process hosting, improved configuration
 
  2019-05-02 Updated npm packages, nuget packages
