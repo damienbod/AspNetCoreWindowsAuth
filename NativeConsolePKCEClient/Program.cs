@@ -26,7 +26,7 @@ namespace NativeConsolePKCEClient
         private static async Task Login()
         {
             var browser = new SystemBrowser(45656);
-            string redirectUri = "http://127.0.0.1:45656";
+            string redirectUri = "https://127.0.0.1:45656";
 
             var options = new OidcClientOptions
             {

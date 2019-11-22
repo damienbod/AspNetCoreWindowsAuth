@@ -9,6 +9,7 @@ using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace NativeConsolePKCEClient
@@ -41,7 +42,7 @@ namespace NativeConsolePKCEClient
             return port;
         }
 
-        public async Task<BrowserResult> InvokeAsync(BrowserOptions options)
+        public async Task<BrowserResult> InvokeAsync(BrowserOptions options, CancellationToken cancellationToken = default)
         {
             using (var listener = new LoopbackHttpListener(Port, _path))
             {
@@ -113,7 +114,7 @@ namespace NativeConsolePKCEClient
             path = path ?? String.Empty;
             if (path.StartsWith("/")) path = path.Substring(1);
 
-            _url = $"http://127.0.0.1:{port}/{path}";
+            _url = $"https://127.0.0.1:{port}/{path}";
 
             _host = new WebHostBuilder()
                 .UseKestrel()

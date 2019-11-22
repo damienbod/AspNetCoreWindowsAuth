@@ -65,8 +65,8 @@ namespace StsServer
                     ClientId = "native.code",
                     ClientName = "Native Client (Code with PKCE)",
 
-                    RedirectUris = { "http://127.0.0.1:45656" },
-                    PostLogoutRedirectUris = { "http://127.0.0.1:45656" },
+                    RedirectUris = { "https://127.0.0.1:45656" },
+                    PostLogoutRedirectUris = { "https://127.0.0.1:45656" },
 
                     RequireClientSecret = false,
 
