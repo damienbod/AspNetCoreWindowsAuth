@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
@@ -9,9 +10,10 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         [Route("")]
-        public IEnumerable<string> Get()
+        public ActionResult<IEnumerable<string>> Get()
         {
             return new string[] { "data 1 from the api for the native application", "data 2 from the api for the native application" };
         }
