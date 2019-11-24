@@ -16,24 +16,24 @@
 
     <div class="row">
         <div class="col-sm-8">
-            @Html.Partial("_ValidationSummary")
+            @await Html.PartialAsync("_ValidationSummary")
 
             <form asp-action="Index" class="consent-form">
                 <input type="hidden" asp-for="ReturnUrl" />
 
                 <div>Uncheck the permissions you do not wish to grant.</div>
-                
+
                 @if (Model.IdentityScopes.Any())
                 {
                     <div class="panel panel-default consent-buttons">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-user"></span>
+                        <div class="panel-heading consent-title-spacing-bottom">
+                            <span class="fas fa-user"></span>
                             Personal Information
                         </div>
                         <ul class="list-group">
                             @foreach (var scope in Model.IdentityScopes)
                             {
-                                @Html.Partial("_ScopeListItem", scope)
+                                @await Html.PartialAsync("_ScopeListItem", scope)
                             }
                         </ul>
                     </div>
@@ -42,14 +42,14 @@
                 @if (Model.ResourceScopes.Any())
                 {
                     <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <span class="glyphicon glyphicon-tasks"></span>
+                        <div class="panel-heading consent-title-spacing-bottom consent-title-spacing-top">
+                            <span class="fas fa-tasks"></span>
                             Application Access
                         </div>
                         <ul class="list-group">
                             @foreach (var scope in Model.ResourceScopes)
                             {
-                                @Html.Partial("_ScopeListItem", scope)
+                                @await Html.PartialAsync("_ScopeListItem", scope)
                             }
                         </ul>
                     </div>
@@ -70,7 +70,7 @@
                     <button name="button" value="no" class="btn">No, Do Not Allow</button>
                     @if (Model.ClientUrl != null)
                     {
-                        <a class="pull-right btn btn-default" target="_blank" href="@Model.ClientUrl">
+                        <a class="pull-right btn btn-link" target="_blank" href="@Model.ClientUrl">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             <strong>@Model.ClientName</strong>
                         </a>

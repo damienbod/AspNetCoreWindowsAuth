@@ -8,18 +8,18 @@
         <h1>Login</h1>
     </div>
 
-    @Html.Partial("_ValidationSummary")
+    @await Html.PartialAsync("_ValidationSummary")
 
     <div class="row">
 
         @if (Model.EnableLocalLogin)
         {
             <div class="col-sm-6">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Local Login</h3>
+                <div class="card card-default">
+                    <div class="card-heading">
+                        <h3 class="card-title"></h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
 
                         <form asp-route="Login">
                             <input type="hidden" asp-for="ReturnUrl" />
@@ -48,8 +48,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <button class="btn btn-primary" name="button" value="login">Login</button>
-                                    <button class="btn btn-default" name="button" value="cancel">Cancel</button>
+                                    <button class="btn btn-secondary" name="button" value="login">Login</button>
+                                    <button class="btn btn-light" name="button" value="cancel">Cancel</button>
                                 </div>
                             </fieldset>
                         </form>
@@ -61,16 +61,16 @@
         @if (Model.VisibleExternalProviders.Any())
         {
             <div class="col-md-6 col-sm-6 external-providers">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">External Login</h3>
+                <div class="card card-default">
+                    <div class="card-heading">
+                        <h3 class="card-title"></h3>
                     </div>
-                    <div class="panel-body">
+                    <div class="card-body">
                         <ul class="list-inline">
                             @foreach (var provider in Model.VisibleExternalProviders)
                             {
                                 <li>
-                                    <a class="btn btn-default"
+                                    <a class="btn btn-secondary"
                                        asp-action="ExternalLogin"
                                        asp-route-provider="@provider.AuthenticationScheme"
                                        asp-route-returnUrl="@Model.ReturnUrl">

@@ -4,3 +4,7 @@
 /StsServer/identityserver4_log.txt
 /Logs
 /MvcHybridClient/node_modules
+/StsServer/node_modules
+/_log_sts.txt
+/_log_api.txt
+/_log_hybridclient.txt
