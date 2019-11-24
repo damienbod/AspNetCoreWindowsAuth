@@ -16,25 +16,24 @@
 
     <div class="row">
         <div class="col-sm-8">
-            @{ await Html.PartialAsync("_ValidationSummary"); }
+            @await Html.PartialAsync("_ValidationSummary")
 
             <form asp-action="Index" class="consent-form">
                 <input type="hidden" asp-for="ReturnUrl" />
 
                 <div>Uncheck the permissions you do not wish to grant.</div>
-                
+
                 @if (Model.IdentityScopes.Any())
                 {
-                    <div class="card card-default consent-buttons">
-                        <div class="card-heading">
-                            <span class="glyphicon glyphicon-user"></span>
+                    <div class="panel panel-default consent-buttons">
+                        <div class="panel-heading consent-title-spacing-bottom">
+                            <span class="fas fa-user"></span>
                             Personal Information
                         </div>
                         <ul class="list-group">
                             @foreach (var scope in Model.IdentityScopes)
                             {
-                                @Html.Partial("_ScopeListItem", scope)
-                                //await Html.PartialAsync("_ScopeListItem", scope);
+                                @await Html.PartialAsync("_ScopeListItem", scope)
                             }
                         </ul>
                     </div>
@@ -42,16 +41,15 @@
 
                 @if (Model.ResourceScopes.Any())
                 {
-                    <div class="card card-default">
-                        <div class="card-heading">
-                            <span class="glyphicon glyphicon-tasks"></span>
+                    <div class="panel panel-default">
+                        <div class="panel-heading consent-title-spacing-bottom consent-title-spacing-top">
+                            <span class="fas fa-tasks"></span>
                             Application Access
                         </div>
                         <ul class="list-group">
                             @foreach (var scope in Model.ResourceScopes)
                             {
-                                @Html.Partial("_ScopeListItem", scope)
-                                //await Html.PartialAsync("_ScopeListItem", scope);
+                                @await Html.PartialAsync("_ScopeListItem", scope)
                             }
                         </ul>
                     </div>
