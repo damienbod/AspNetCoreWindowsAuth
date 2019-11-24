@@ -25,31 +25,33 @@
                 
                 @if (Model.IdentityScopes.Any())
                 {
-                    <div class="panel panel-default consent-buttons">
-                        <div class="panel-heading">
+                    <div class="card card-default consent-buttons">
+                        <div class="card-heading">
                             <span class="glyphicon glyphicon-user"></span>
                             Personal Information
                         </div>
                         <ul class="list-group">
                             @foreach (var scope in Model.IdentityScopes)
                             {
-                                await Html.PartialAsync("_ScopeListItem", scope);
+                                @Html.Partial("_ScopeListItem", scope)
+                                //await Html.PartialAsync("_ScopeListItem", scope);
                             }
-                            </ul>
+                        </ul>
                     </div>
                 }
 
                 @if (Model.ResourceScopes.Any())
                 {
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
+                    <div class="card card-default">
+                        <div class="card-heading">
                             <span class="glyphicon glyphicon-tasks"></span>
                             Application Access
                         </div>
                         <ul class="list-group">
                             @foreach (var scope in Model.ResourceScopes)
                             {
-                                await Html.PartialAsync("_ScopeListItem", scope);
+                                @Html.Partial("_ScopeListItem", scope)
+                                //await Html.PartialAsync("_ScopeListItem", scope);
                             }
                         </ul>
                     </div>
@@ -70,7 +72,7 @@
                     <button name="button" value="no" class="btn">No, Do Not Allow</button>
                     @if (Model.ClientUrl != null)
                     {
-                        <a class="pull-right btn btn-default" target="_blank" href="@Model.ClientUrl">
+                        <a class="pull-right btn btn-link" target="_blank" href="@Model.ClientUrl">
                             <span class="glyphicon glyphicon-info-sign"></span>
                             <strong>@Model.ClientName</strong>
                         </a>
