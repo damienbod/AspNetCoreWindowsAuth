@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.WebUtilities;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -19,8 +20,11 @@ namespace AppAuthorizationService
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRouteRequirement requirement)
         {
+            //var routeEndpoint = context.Resource as RouteEndpoint;
             var routeValues = _httpContextAccessor.HttpContext.Request.RouteValues;
-            var routeEndpoint = context.Resource as RouteEndpoint;
+            
+            var queryString = _httpContextAccessor.HttpContext.Request.Query;
+            var fruit = queryString["fruit"];
 
             if (context == null)
                 throw new ArgumentNullException(nameof(context));

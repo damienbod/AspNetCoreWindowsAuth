@@ -27,6 +27,15 @@ namespace WebApi.Controllers
             return Ok($"get this data {id}");
         }
 
+        [Authorize("ValuesRoutePolicy")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("q/{id}")]
+        [Route("q/{id}")]
+        public IActionResult Get([FromRoute]string id, [FromQuery]string fruit)
+        {
+            return Ok($"get this data {id}, {fruit}");
+        }
+
         [Authorize("ValuesRequestBodyCheckPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost]
