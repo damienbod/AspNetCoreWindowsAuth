@@ -33,7 +33,7 @@ namespace WebApi.Controllers
         [Route("{user}")]
         public IActionResult Get([FromRoute]string user)
         {
-            return Ok($"get this data {user}");
+            return Ok($"get this data [{user}] using the route");
         }
 
         [Authorize("ValuesQueryPolicy")]
@@ -42,7 +42,7 @@ namespace WebApi.Controllers
         [Route("q/{user}")]
         public IActionResult Get([FromRoute]string user, [FromQuery]string fruit)
         {
-            return Ok($"get this data {user}, {fruit}");
+            return Ok($"get this data [{fruit}] using the query parameter");
         }
 
         [Authorize]
@@ -59,7 +59,7 @@ namespace WebApi.Controllers
 
             if (authorizationResult.Succeeded)
             {
-                return Ok($"posted this data {user.User}");
+                return Ok($"posted this data [{user.User}] using the body");
             }
             else
             {
