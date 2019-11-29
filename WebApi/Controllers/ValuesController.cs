@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebApi.Controllers
 {
     [Authorize(Policy = "protectedScope")]
+    [ApiController]
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
@@ -21,7 +22,7 @@ namespace WebApi.Controllers
 
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        [Route("")]
+        [Route("", Name = nameof(GetAll))]
         public ActionResult<IEnumerable<string>> GetAll()
         {
             return new string[] { "data 1 from the api for the native application", "data 2 from the api for the native application" };
@@ -29,8 +30,8 @@ namespace WebApi.Controllers
 
         [Authorize("ValuesRoutePolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("{user}")]
-        [Route("{user}")]
+        [HttpGet]
+        [Route("{user}", Name = nameof(GetWithRouteParam))]
         public IActionResult GetWithRouteParam([FromRoute]string user)
         {
             return Ok($"get this data [{user}] using the route");
@@ -38,8 +39,8 @@ namespace WebApi.Controllers
 
         [Authorize("ValuesQueryPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("q/{user}")]
-        [Route("q/{user}")]
+        [HttpGet]
+        [Route("q/{user}", Name = nameof(GetWithQueryParam))]
         public IActionResult GetWithQueryParam([FromRoute]string user, [FromQuery]string fruit)
         {
             return Ok($"get this data [{fruit}] using the query parameter");
@@ -49,7 +50,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Produces(typeof(BodyData))]
         [HttpPost]
-        [Route("")]
+        [Route("", Name = nameof(Post))]
         public async Task<IActionResult> Post([FromBody]BodyData user)
         {
             var requirement = new ValuesRequestBodyRequirement();
