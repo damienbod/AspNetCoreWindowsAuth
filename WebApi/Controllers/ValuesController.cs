@@ -40,8 +40,8 @@ namespace WebApi.Controllers
         [Authorize("ValuesQueryPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
-        [Route("q/{user}", Name = nameof(GetWithQueryParam))]
-        public IActionResult GetWithQueryParam([FromRoute]string user, [FromQuery]string fruit)
+        [Route("q", Name = nameof(GetWithQueryParam))]
+        public IActionResult GetWithQueryParam([FromQuery]string fruit)
         {
             return Ok($"get this data [{fruit}] using the query parameter");
         }
