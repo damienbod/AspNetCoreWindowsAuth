@@ -95,7 +95,9 @@ namespace NativeConsolePKCEClient
                 var key = Console.ReadKey();
 
                 if (key.Key == ConsoleKey.X) return;
-                if (key.Key == ConsoleKey.C) await CallApi(currentAccessToken);
+                if (key.Key == ConsoleKey.B) await CallApi(currentAccessToken);
+                if (key.Key == ConsoleKey.C) await CallApiwithRouteValue(currentAccessToken, "phil");
+                if (key.Key == ConsoleKey.D) await CallApiwithBodyValue(currentAccessToken, "mike");
                 if (key.Key == ConsoleKey.R)
                 {
                     var refreshResult = await _oidcClient.RefreshTokenAsync(currentRefreshToken);
@@ -119,6 +121,37 @@ namespace NativeConsolePKCEClient
         {
             _apiClient.SetBearerToken(currentAccessToken);
             var response = await _apiClient.GetAsync("");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = JArray.Parse(await response.Content.ReadAsStringAsync());
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.ReasonPhrase}");
+            }
+        }
+
+        private static async Task CallApiwithBodyValue(string currentAccessToken, string user)
+        {
+            _apiClient.SetBearerToken(currentAccessToken);
+            var response = await _apiClient.PostAsync("", new StringContent(user));
+
+            if (response.IsSuccessStatusCode)
+            {
+                var json = JArray.Parse(await response.Content.ReadAsStringAsync());
+                Console.WriteLine(json);
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.ReasonPhrase}");
+            }
+        }
+        private static async Task CallApiwithRouteValue(string currentAccessToken, string user)
+        {
+            _apiClient.SetBearerToken(currentAccessToken);
+            var response = await _apiClient.GetAsync($"/{user}");
 
             if (response.IsSuccessStatusCode)
             {

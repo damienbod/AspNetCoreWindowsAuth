@@ -17,5 +17,21 @@ namespace WebApi.Controllers
         {
             return new string[] { "data 1 from the api for the native application", "data 2 from the api for the native application" };
         }
+
+        [Authorize("ValuesRoutePolicy")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpGet("{id}")]
+        public IActionResult Get(string id)
+        {
+            return Ok($"get this data {id}");
+        }
+
+        [Authorize("ValuesRequestBodyCheckPolicy")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [HttpPost]
+        public IActionResult Post([FromBody]string value)
+        {
+            return Ok($"post this data {value}");
+        }
     }
 }

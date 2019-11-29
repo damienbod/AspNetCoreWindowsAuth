@@ -1,5 +1,7 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using AppAuthorizationService;
 using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -32,12 +34,24 @@ namespace WebApi
                   options.RequireHttpsMetadata = true;
               });
 
+            services.AddSingleton<IAuthorizationHandler, ValuesCheckRequestBodyHandler>();
+            services.AddSingleton<IAuthorizationHandler, ValuesCheckRouteParameterHandler>();
+
             services.AddAuthorization(options =>
+            {
                 options.AddPolicy("protectedScope", policy =>
                 {
                     policy.RequireClaim("scope", "native_api");
-                })
-            );
+                });
+                options.AddPolicy("ValuesRoutePolicy", valuesRoutePolicy =>
+                {
+                    valuesRoutePolicy.Requirements.Add(new ValuesRouteRequirement());
+                });
+                options.AddPolicy("ValuesRequestBodyCheckPolicy", valuesRequestBodyCheckPolicy =>
+                {
+                    valuesRequestBodyCheckPolicy.Requirements.Add(new ValuesRequestBodyRequirement());
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {
