@@ -9,18 +9,19 @@ using System.Threading.Tasks;
 
 namespace AppAuthorizationService
 {
-    public class ValuesCheckRouteParameterHandler : AuthorizationHandler<ValuesRouteRequirement>
+    public class ValuesCheckQueryParameterHandler : AuthorizationHandler<ValuesRouteRequirement>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public ValuesCheckRouteParameterHandler(IHttpContextAccessor httpContextAccessor)
+        public ValuesCheckQueryParameterHandler(IHttpContextAccessor httpContextAccessor)
         {
             _httpContextAccessor = httpContextAccessor;
         }
 
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRouteRequirement requirement)
         {
-            var routeValues = _httpContextAccessor.HttpContext.Request.RouteValues;
+            var queryString = _httpContextAccessor.HttpContext.Request.Query;
+            var fruit = queryString["fruit"];
 
             if (context == null)
                 throw new ArgumentNullException(nameof(context));

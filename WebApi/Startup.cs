@@ -37,8 +37,8 @@ namespace WebApi
               });
 
             services.AddHttpContextAccessor();
-            //services.TryAddSingleton<IActionContextAccessor, ActionContextAccessor>();
 
+            services.AddSingleton<IAuthorizationHandler, ValuesCheckQueryParameterHandler>();
             services.AddSingleton<IAuthorizationHandler, ValuesCheckRequestBodyHandler>();
             services.AddSingleton<IAuthorizationHandler, ValuesCheckRouteParameterHandler>();
 
@@ -51,6 +51,10 @@ namespace WebApi
                 options.AddPolicy("ValuesRoutePolicy", valuesRoutePolicy =>
                 {
                     valuesRoutePolicy.Requirements.Add(new ValuesRouteRequirement());
+                });
+                options.AddPolicy("ValuesQueryPolicy", valuesQueryPolicy =>
+                {
+                    valuesQueryPolicy.Requirements.Add(new ValuesRouteRequirement());
                 });
                 options.AddPolicy("ValuesRequestBodyCheckPolicy", valuesRequestBodyCheckPolicy =>
                 {
