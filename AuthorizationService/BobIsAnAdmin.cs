@@ -12,7 +12,7 @@ namespace AppAuthorizationService
         }
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, IsAdminRequirement requirement)
         {
-           if(_appAuthorizationService.BobIsAnAdmin(context.User.Identity.Name))
+            if(_appAuthorizationService.BobIsAnAdmin(context.User.Identity.Name))
             {
                 context.Succeed(requirement);
             }

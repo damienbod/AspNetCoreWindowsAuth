@@ -137,12 +137,15 @@ namespace NativeConsolePKCEClient
         private static async Task CallApiwithBodyValue(string currentAccessToken, string user)
         {
             _apiClient.SetBearerToken(currentAccessToken);
-            var response = await _apiClient.PostAsync("/api/values", new StringContent(user));
+            var response = await _apiClient.PostAsJsonAsync(
+                "/api/values", 
+                new BodyData { User = user }
+            );
 
             if (response.IsSuccessStatusCode)
             {
-                var json = JArray.Parse(await response.Content.ReadAsStringAsync());
-                Console.WriteLine(json);
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
             }
             else
             {
@@ -156,8 +159,8 @@ namespace NativeConsolePKCEClient
 
             if (response.IsSuccessStatusCode)
             {
-                var json = JArray.Parse(await response.Content.ReadAsStringAsync());
-                Console.WriteLine(json);
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
             }
             else
             {
@@ -172,13 +175,18 @@ namespace NativeConsolePKCEClient
 
             if (response.IsSuccessStatusCode)
             {
-                var json = JArray.Parse(await response.Content.ReadAsStringAsync());
-                Console.WriteLine(json);
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine(result);
             }
             else
             {
                 Console.WriteLine($"Error: {response.ReasonPhrase}");
             }
         }
+    }
+
+    public class BodyData
+    {
+        public string User { get; set; }
     }
 }

@@ -48,10 +48,10 @@ namespace WebApi.Controllers
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]string user)
+        public async Task<IActionResult> Post([FromBody]BodyData user)
         {
             var requirement = new ValuesRequestBodyRequirement();
-            var resource = new BodyData { User = user };
+            var resource = user;
 
             var authorizationResult =
                 await _authorizationService.AuthorizeAsync(
@@ -59,7 +59,7 @@ namespace WebApi.Controllers
 
             if (authorizationResult.Succeeded)
             {
-                return Ok($"post this data {user}");
+                return Ok($"posted this data {user.User}");
             }
             else
             {
