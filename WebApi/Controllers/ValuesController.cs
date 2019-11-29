@@ -47,6 +47,7 @@ namespace WebApi.Controllers
 
         [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
+        [Produces(typeof(BodyData))]
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]BodyData user)
         {
