@@ -22,7 +22,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         [Route("")]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<string>> GetAll()
         {
             return new string[] { "data 1 from the api for the native application", "data 2 from the api for the native application" };
         }
@@ -31,7 +31,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{user}")]
         [Route("{user}")]
-        public IActionResult Get([FromRoute]string user)
+        public IActionResult GetWithRouteParam([FromRoute]string user)
         {
             return Ok($"get this data [{user}] using the route");
         }
@@ -40,7 +40,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("q/{user}")]
         [Route("q/{user}")]
-        public IActionResult Get([FromRoute]string user, [FromQuery]string fruit)
+        public IActionResult GetWithQueryParam([FromRoute]string user, [FromQuery]string fruit)
         {
             return Ok($"get this data [{fruit}] using the query parameter");
         }
@@ -49,6 +49,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [Produces(typeof(BodyData))]
         [HttpPost]
+        [Route("")]
         public async Task<IActionResult> Post([FromBody]BodyData user)
         {
             var requirement = new ValuesRequestBodyRequirement();
