@@ -21,7 +21,8 @@ namespace WebApi.Controllers
         [Authorize("ValuesRoutePolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{id}")]
-        public IActionResult Get(string id)
+        [Route("{id}")]
+        public IActionResult Get([FromRoute]string id)
         {
             return Ok($"get this data {id}");
         }

@@ -11,7 +11,7 @@ namespace NativeConsolePKCEClient
     public class Program
     {
         static string _authority = "https://localhost:44364";
-        static string _api = "https://localhost:44342/api/values";
+        static string _api = "https://localhost:44342";
 
         static OidcClient _oidcClient;
         static HttpClient _apiClient = new HttpClient { BaseAddress = new Uri(_api) };
@@ -80,7 +80,7 @@ namespace NativeConsolePKCEClient
             var currentAccessToken = result.AccessToken;
             var currentRefreshToken = result.RefreshToken;
 
-            var menu = " x:exit  c:call api";
+            var menu = " x:exit  b:call api All c:call api with route d:post api with body";
             if (currentRefreshToken != null)
             {
                 menu += "r:refresh token";
@@ -120,7 +120,7 @@ namespace NativeConsolePKCEClient
         private static async Task CallApi(string currentAccessToken)
         {
             _apiClient.SetBearerToken(currentAccessToken);
-            var response = await _apiClient.GetAsync("");
+            var response = await _apiClient.GetAsync("/api/values");
 
             if (response.IsSuccessStatusCode)
             {
@@ -136,7 +136,7 @@ namespace NativeConsolePKCEClient
         private static async Task CallApiwithBodyValue(string currentAccessToken, string user)
         {
             _apiClient.SetBearerToken(currentAccessToken);
-            var response = await _apiClient.PostAsync("", new StringContent(user));
+            var response = await _apiClient.PostAsync("/api/values", new StringContent(user));
 
             if (response.IsSuccessStatusCode)
             {
@@ -151,7 +151,7 @@ namespace NativeConsolePKCEClient
         private static async Task CallApiwithRouteValue(string currentAccessToken, string user)
         {
             _apiClient.SetBearerToken(currentAccessToken);
-            var response = await _apiClient.GetAsync($"/{user}");
+            var response = await _apiClient.GetAsync($"/api/values/{user}");
 
             if (response.IsSuccessStatusCode)
             {
