@@ -80,7 +80,7 @@ namespace NativeConsolePKCEClient
             var currentAccessToken = result.AccessToken;
             var currentRefreshToken = result.RefreshToken;
 
-            var menu = " x:exit  b:call api All c:call api with route d:post api with body";
+            var menu = " x:exit \n b:call api All \n c:call api with route \n d:post api with body \n e:call api with query parameter";
             if (currentRefreshToken != null)
             {
                 menu += "r:refresh token";
@@ -98,7 +98,7 @@ namespace NativeConsolePKCEClient
                 if (key.Key == ConsoleKey.B) await CallApi(currentAccessToken);
                 if (key.Key == ConsoleKey.C) await CallApiwithRouteValue(currentAccessToken, "phil");
                 if (key.Key == ConsoleKey.D) await CallApiwithBodyValue(currentAccessToken, "mike");
-                if (key.Key == ConsoleKey.E) await CallApiwithRouteValueAndQuery(currentAccessToken, "tim");
+                if (key.Key == ConsoleKey.E) await CallApiwithRouteValueAndQuery(currentAccessToken, "orange");
                 if (key.Key == ConsoleKey.R)
                 {
                     var refreshResult = await _oidcClient.RefreshTokenAsync(currentRefreshToken);
@@ -165,10 +165,10 @@ namespace NativeConsolePKCEClient
             }
         }
 
-        private static async Task CallApiwithRouteValueAndQuery(string currentAccessToken, string user)
+        private static async Task CallApiwithRouteValueAndQuery(string currentAccessToken, string fruit)
         {
             _apiClient.SetBearerToken(currentAccessToken);
-            var response = await _apiClient.GetAsync($"/api/values/q/{user}?fruit=orange");
+            var response = await _apiClient.GetAsync($"/api/values/q/mike?fruit={fruit}");
 
             if (response.IsSuccessStatusCode)
             {

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using AppAuthorizationService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +12,13 @@ namespace WebApi.Controllers
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly IAuthorizationService _authorizationService;
+
+        public ValuesController(IAuthorizationService authorizationService)
+        {
+            _authorizationService = authorizationService;
+        }
+
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         [Route("")]
@@ -20,28 +29,42 @@ namespace WebApi.Controllers
 
         [Authorize("ValuesRoutePolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("{id}")]
-        [Route("{id}")]
-        public IActionResult Get([FromRoute]string id)
+        [HttpGet("{user}")]
+        [Route("{user}")]
+        public IActionResult Get([FromRoute]string user)
         {
-            return Ok($"get this data {id}");
+            return Ok($"get this data {user}");
         }
 
         [Authorize("ValuesQueryPolicy")]
         [ProducesResponseType(StatusCodes.Status200OK)]
-        [HttpGet("q/{id}")]
-        [Route("q/{id}")]
-        public IActionResult Get([FromRoute]string id, [FromQuery]string fruit)
+        [HttpGet("q/{user}")]
+        [Route("q/{user}")]
+        public IActionResult Get([FromRoute]string user, [FromQuery]string fruit)
         {
-            return Ok($"get this data {id}, {fruit}");
+            return Ok($"get this data {user}, {fruit}");
         }
 
-        [Authorize("ValuesRequestBodyCheckPolicy")]
+        [Authorize]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpPost]
-        public IActionResult Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]string user)
         {
-            return Ok($"post this data {value}");
+            var requirement = new ValuesRequestBodyRequirement();
+            var resource = new BodyData { User = user };
+
+            var authorizationResult =
+                await _authorizationService.AuthorizeAsync(
+                    User, resource, requirement);
+
+            if (authorizationResult.Succeeded)
+            {
+                return Ok($"post this data {user}");
+            }
+            else
+            {
+                return new ForbidResult();
+            }
         }
     }
 }
