@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace AppAuthorizationService
 {
-    public class ValuesCheckQueryParameterHandler : AuthorizationHandler<ValuesRouteRequirement>
+    public class ValuesCheckQueryParameterHandler : AuthorizationHandler<ValuesCheckQueryParamRequirement>
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 
@@ -13,12 +13,12 @@ namespace AppAuthorizationService
             _httpContextAccessor = httpContextAccessor;
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRouteRequirement requirement)
+        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesCheckQueryParamRequirement requirement)
         {
             var queryString = _httpContextAccessor.HttpContext.Request.Query;
             var fruit = queryString["fruit"];
 
-            if (fruit == "orange")
+            if (fruit.ToString() == "orange")
             {
                 context.Succeed(requirement);
             }

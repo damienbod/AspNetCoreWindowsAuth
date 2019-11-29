@@ -54,7 +54,7 @@ namespace WebApi
                 });
                 options.AddPolicy("ValuesQueryPolicy", valuesQueryPolicy =>
                 {
-                    valuesQueryPolicy.Requirements.Add(new ValuesRouteRequirement());
+                    valuesQueryPolicy.Requirements.Add(new ValuesCheckQueryParamRequirement());
                 });
                 options.AddPolicy("ValuesRequestBodyCheckPolicy", valuesRequestBodyCheckPolicy =>
                 {

@@ -126,7 +126,7 @@ namespace NativeConsolePKCEClient
             if (response.IsSuccessStatusCode)
             {
                 var json = JArray.Parse(await response.Content.ReadAsStringAsync());
-                Console.WriteLine(json);
+                Console.WriteLine("\n" + json);
             }
             else
             {
@@ -145,7 +145,7 @@ namespace NativeConsolePKCEClient
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
+                Console.WriteLine($"\n{result}");
             }
             else
             {
@@ -160,7 +160,7 @@ namespace NativeConsolePKCEClient
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
+                Console.WriteLine($"\n{result}");
             }
             else
             {
@@ -176,7 +176,7 @@ namespace NativeConsolePKCEClient
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(result);
+                Console.WriteLine( $"\n{result}");
             }
             else
             {
