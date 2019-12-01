@@ -1,10 +1,14 @@
 ﻿using System.IdentityModel.Tokens.Jwt;
+using AppAuthorizationService;
 using IdentityServer4.AccessTokenValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Logging;
 using Microsoft.OpenApi.Models;
@@ -32,12 +36,31 @@ namespace WebApi
                   options.RequireHttpsMetadata = true;
               });
 
+            services.AddHttpContextAccessor();
+
+            services.AddSingleton<IAuthorizationHandler, ValuesCheckQueryParameterHandler>();
+            services.AddSingleton<IAuthorizationHandler, ValuesCheckRequestBodyHandler>();
+            services.AddSingleton<IAuthorizationHandler, ValuesCheckRouteParameterHandler>();
+
             services.AddAuthorization(options =>
+            {
                 options.AddPolicy("protectedScope", policy =>
                 {
                     policy.RequireClaim("scope", "native_api");
-                })
-            );
+                });
+                options.AddPolicy("ValuesRoutePolicy", valuesRoutePolicy =>
+                {
+                    valuesRoutePolicy.Requirements.Add(new ValuesRouteRequirement());
+                });
+                options.AddPolicy("ValuesQueryPolicy", valuesQueryPolicy =>
+                {
+                    valuesQueryPolicy.Requirements.Add(new ValuesCheckQueryParamRequirement());
+                });
+                options.AddPolicy("ValuesRequestBodyCheckPolicy", valuesRequestBodyCheckPolicy =>
+                {
+                    valuesRequestBodyCheckPolicy.Requirements.Add(new ValuesRequestBodyRequirement());
+                });
+            });
 
             services.AddSwaggerGen(c =>
             {

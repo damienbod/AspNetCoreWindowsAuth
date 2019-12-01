@@ -11,7 +11,7 @@ namespace NativeConsolePKCEClient
     public class Program
     {
         static string _authority = "https://localhost:44364";
-        static string _api = "https://localhost:44342/api/values";
+        static string _api = "https://localhost:44342";
 
         static OidcClient _oidcClient;
         static HttpClient _apiClient = new HttpClient { BaseAddress = new Uri(_api) };
@@ -80,7 +80,7 @@ namespace NativeConsolePKCEClient
             var currentAccessToken = result.AccessToken;
             var currentRefreshToken = result.RefreshToken;
 
-            var menu = " x:exit  c:call api";
+            var menu = " x:exit \n b:call api All \n c:call api with route \n d:post api with body \n e:call api with query parameter";
             if (currentRefreshToken != null)
             {
                 menu += "r:refresh token";
@@ -95,7 +95,10 @@ namespace NativeConsolePKCEClient
                 var key = Console.ReadKey();
 
                 if (key.Key == ConsoleKey.X) return;
-                if (key.Key == ConsoleKey.C) await CallApi(currentAccessToken);
+                if (key.Key == ConsoleKey.B) await CallApi(currentAccessToken);
+                if (key.Key == ConsoleKey.C) await CallApiwithRouteValue(currentAccessToken, "phil");
+                if (key.Key == ConsoleKey.D) await CallApiwithBodyValue(currentAccessToken, "mike");
+                if (key.Key == ConsoleKey.E) await CallApiwithQueryStringParam(currentAccessToken, "orange");
                 if (key.Key == ConsoleKey.R)
                 {
                     var refreshResult = await _oidcClient.RefreshTokenAsync(currentRefreshToken);
@@ -118,17 +121,72 @@ namespace NativeConsolePKCEClient
         private static async Task CallApi(string currentAccessToken)
         {
             _apiClient.SetBearerToken(currentAccessToken);
-            var response = await _apiClient.GetAsync("");
+            var response = await _apiClient.GetAsync("/api/values");
 
             if (response.IsSuccessStatusCode)
             {
                 var json = JArray.Parse(await response.Content.ReadAsStringAsync());
-                Console.WriteLine(json);
+                Console.WriteLine("\n" + json);
             }
             else
             {
                 Console.WriteLine($"Error: {response.ReasonPhrase}");
             }
         }
+
+        private static async Task CallApiwithBodyValue(string currentAccessToken, string user)
+        {
+            _apiClient.SetBearerToken(currentAccessToken);
+            var response = await _apiClient.PostAsJsonAsync(
+                "/api/values", 
+                new BodyData { User = user }
+            );
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"\n{result}");
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.ReasonPhrase}");
+            }
+        }
+        private static async Task CallApiwithRouteValue(string currentAccessToken, string user)
+        {
+            _apiClient.SetBearerToken(currentAccessToken);
+            var response = await _apiClient.GetAsync($"/api/values/{user}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine($"\n{result}");
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.ReasonPhrase}");
+            }
+        }
+
+        private static async Task CallApiwithQueryStringParam(string currentAccessToken, string fruit)
+        {
+            _apiClient.SetBearerToken(currentAccessToken);
+            var response = await _apiClient.GetAsync($"/api/values/q?fruit={fruit}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadAsStringAsync();
+                Console.WriteLine( $"\n{result}");
+            }
+            else
+            {
+                Console.WriteLine($"Error: {response.ReasonPhrase}");
+            }
+        }
+    }
+
+    public class BodyData
+    {
+        public string User { get; set; }
     }
 }
