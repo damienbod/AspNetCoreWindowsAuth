@@ -66,11 +66,10 @@ namespace StsServer
             }
 
             app.UseStaticFiles();
-            app.UseIdentityServer();
 
             app.UseRouting();
 
-            app.UseAuthentication();
+            app.UseIdentityServer();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
