@@ -10,6 +10,8 @@
 
  # History
 
+ 2019-12-20 Updated to .NET Core 3.1
+ 
  2019-12-02 Added Authorization examples for HTTP request data
  
  2019-11-22 Updated nuget packages, added swagger to the API project
