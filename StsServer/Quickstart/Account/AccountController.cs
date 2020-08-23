@@ -2,29 +2,36 @@
 // Licensed under the Apache License, Version 2.0. See LICENSE in the project root for license information.
 
 
+using IdentityModel;
+using IdentityServer4;
+using IdentityServer4.Events;
+using IdentityServer4.Extensions;
+using IdentityServer4.Models;
 using IdentityServer4.Services;
 using IdentityServer4.Stores;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System.Threading.Tasks;
+using IdentityServer4.Test;
 using Microsoft.AspNetCore.Authentication;
-using IdentityServer4.Events;
-using IdentityServer4.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using StsServer.Models;
-using IdentityServer4.Extensions;
-using System.Security.Principal;
-using System.Security.Claims;
-using IdentityModel;
-using System.Linq;
 using System;
 using System.Collections.Generic;
-using Microsoft.AspNetCore.Server.IISIntegration;
-using Microsoft.AspNetCore.Server.HttpSys;
+using System.Linq;
+using System.Security.Claims;
+using System.Security.Principal;
+using System.Threading.Tasks;
 
-namespace IdentityServer4.Quickstart.UI
+namespace IdentityServerHost.Quickstart.UI
 {
+    /// <summary>
+    /// This sample controller implements a typical login/logout/provision workflow for local and external accounts.
+    /// The login service encapsulates the interactions with the user data store. This data store is in-memory only and cannot be used for production!
+    /// The interaction service provides a way for the UI to communicate with identityserver for validation and context retrieval
+    /// </summary>
     [SecurityHeaders]
+    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly UserManager<ApplicationUser> _userManager;
@@ -84,9 +91,16 @@ namespace IdentityServer4.Quickstart.UI
                     // if the user cancels, send a result back into IdentityServer as if they 
                     // denied the consent (even if this client does not require consent).
                     // this will send back an access denied OIDC error response to the client.
-                    await _interaction.GrantConsentAsync(context, ConsentResponse.Denied);
-                    
+                    await _interaction.DenyAuthorizationAsync(context, AuthorizationError.AccessDenied);
+
                     // we can trust model.ReturnUrl since GetAuthorizationContextAsync returned non-null
+                    if (context.IsNativeClient())
+                    {
+                        // The client is native, so this change in how to
+                        // return the response is for better UX for the end user.
+                        return this.LoadingPage("Redirect", model.ReturnUrl);
+                    }
+
                     return Redirect(model.ReturnUrl);
                 }
                 else
@@ -196,8 +210,18 @@ namespace IdentityServer4.Quickstart.UI
             additionalLocalClaims.AddRange(principal.Claims);
             var name = principal.FindFirst(JwtClaimTypes.Name)?.Value ?? user.Id;
             await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id, name));
-            await HttpContext.SignInAsync(user.Id, name, provider, localSignInProps, additionalLocalClaims.ToArray());
 
+            // issue authentication cookie for user
+            var isuser = new IdentityServerUser(principal.GetSubjectId())
+            {
+                DisplayName = name,
+                IdentityProvider = provider,
+                AdditionalClaims = additionalLocalClaims
+            };
+
+            await HttpContext.SignInAsync(isuser, localSignInProps);
+
+          
             // delete temporary cookie used during external authentication
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -296,9 +320,9 @@ namespace IdentityServer4.Quickstart.UI
                 }).ToList();
 
             var allowLocal = true;
-            if (context?.ClientId != null)
+            if (context?.Client.ClientId != null)
             {
-                var client = await _clientStore.FindEnabledClientByIdAsync(context.ClientId);
+                var client = await _clientStore.FindEnabledClientByIdAsync(context.Client.ClientId);
                 if (client != null)
                 {
                     allowLocal = client.EnableLocalLogin;

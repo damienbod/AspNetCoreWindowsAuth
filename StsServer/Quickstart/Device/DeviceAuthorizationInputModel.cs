@@ -4,8 +4,8 @@
 
 namespace IdentityServerHost.Quickstart.UI
 {
-    public class LogoutViewModel : LogoutInputModel
+    public class DeviceAuthorizationInputModel : ConsentInputModel
     {
-        public bool ShowLogoutPrompt { get; set; } = true;
+        public string UserCode { get; set; }
     }
 }
