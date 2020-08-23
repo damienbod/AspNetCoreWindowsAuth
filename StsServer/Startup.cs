@@ -51,8 +51,7 @@ namespace StsServer
 
             builder.AddDeveloperSigningCredential();
 
-            services.AddControllersWithViews()
-                 .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
