@@ -52,7 +52,7 @@ namespace StsServer
 
                     AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
                     ClientSecrets = { new Secret("hybrid_flow_secret".Sha256()) },
-
+                    RequirePkce = false,
                     RedirectUris = { "https://localhost:44381/signin-oidc" },
                     FrontChannelLogoutUri = "https://localhost:44381/signout-oidc",
                     PostLogoutRedirectUris = { "https://localhost:44381/signout-callback-oidc" },
