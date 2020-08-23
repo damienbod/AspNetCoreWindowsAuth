@@ -10,6 +10,8 @@
 
  # History
 
+ 2020-08-23 Updated Nuget packages. IdentityServer 4 V4
+
  2020-05-03 Updated Nuget packages
  
  2019-12-20 Updated to .NET Core 3.1
