@@ -212,7 +212,7 @@ namespace IdentityServerHost.Quickstart.UI
             await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id, name));
 
             // issue authentication cookie for user
-            var isuser = new IdentityServerUser(user.SubjectId)
+            var isuser = new IdentityServerUser(principal.GetSubjectId())
             {
                 DisplayName = name,
                 IdentityProvider = provider,
