@@ -1,6 +1,6 @@
-@model ConsentViewModel
+@model DeviceAuthorizationViewModel
 
-<div class="page-consent">
+<div class="page-device-confirmation">
     <div class="lead">
         @if (Model.ClientLogoUrl != null)
         {
@@ -10,6 +10,10 @@
             @Model.ClientName
             <small class="text-muted">is requesting your permission</small>
         </h1>
+        @if (Model.ConfirmUserCode)
+        {
+            <p>Please confirm that the authorization request quotes the code: <strong>@Model.UserCode</strong>.</p>
+        }
         <p>Uncheck the permissions you do not wish to grant.</p>
     </div>
 
@@ -19,8 +23,8 @@
         </div>
     </div>
 
-    <form asp-action="Index">
-        <input type="hidden" asp-for="ReturnUrl" />
+    <form asp-action="Callback">
+        <input asp-for="UserCode" type="hidden" value="@Model.UserCode" />
         <div class="row">
             <div class="col-sm-8">
                 @if (Model.IdentityScopes.Any())
