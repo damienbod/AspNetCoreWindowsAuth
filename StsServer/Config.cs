@@ -11,31 +11,45 @@ namespace StsServer
     {
         public static IEnumerable<IdentityResource> GetIdentityResources()
         {
-            return new IdentityResource[]
+            return new List<IdentityResource>
             {
                 new IdentityResources.OpenId(),
                 new IdentityResources.Profile(),
+                new IdentityResources.Email()
             };
         }
 
-        public static IEnumerable<ApiResource> GetApis()
+        public static IEnumerable<ApiScope> GetApiScopes()
         {
-            return new ApiResource[]
+            return new List<ApiScope>
             {
-                new ApiResource("scope_used_for_hybrid_flow", "Mvc Hybrid Client"),
-                new ApiResource("native_api", "Native Client API")
+                new ApiScope("scope_used_for_hybrid_flow", "Scope for the scope_used_for_hybrid_flow"),
+                new ApiScope("native_api",  "Scope for the native_api")
+            };
+        }
+
+        public static IEnumerable<ApiResource> GetApiResources()
+        {
+            return new List<ApiResource>
+            {
+                new ApiResource("ApiHybridFlow")
                 {
                     ApiSecrets =
                     {
+                        new Secret("hybrid_flow_secret".Sha256())
+                    },
+                    Scopes = { "scope_used_for_hybrid_flow" },
+                    UserClaims = { "role", "admin", "user" }
+                },
+                new ApiResource("NativeAPI")
+                {
+                    DisplayName = "Native Client API",
+                    ApiSecrets =
+                    {
                         new Secret("native_api_secret".Sha256())
-                    }
-                    //Scopes =
-                    //{
-                    //    new Scope
-                    //    {
-                    //        Name = "native_api"
-                    //    }
-                    //}
+                    },
+                    Scopes = { "native_api" },
+                    UserClaims = { "role", "admin", "user" }
                 }
             };
         }
