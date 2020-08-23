@@ -31,7 +31,7 @@ namespace WebApi
               .AddIdentityServerAuthentication(options =>
               {
                   options.Authority = stsServer;
-                  options.ApiName = "native_api";
+                  options.ApiName = "NativeAPI";
                   options.ApiSecret = "native_api_secret";
                   options.RequireHttpsMetadata = true;
               });
@@ -71,9 +71,7 @@ namespace WebApi
                 });
             });
 
-            services.AddControllers()
-                .AddNewtonsoftJson()
-                .SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
+            services.AddControllers().AddNewtonsoftJson();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
