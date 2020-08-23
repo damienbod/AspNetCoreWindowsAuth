@@ -211,8 +211,17 @@ namespace IdentityServerHost.Quickstart.UI
             var name = principal.FindFirst(JwtClaimTypes.Name)?.Value ?? user.Id;
             await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id, name));
 
-            await HttpContext.SignInAsync(user.Id, name, provider, localSignInProps, additionalLocalClaims.ToArray());
+            // issue authentication cookie for user
+            var isuser = new IdentityServerUser(user.SubjectId)
+            {
+                DisplayName = name,
+                IdentityProvider = provider,
+                AdditionalClaims = additionalLocalClaims
+            };
 
+            await HttpContext.SignInAsync(isuser, localSignInProps);
+
+          
             // delete temporary cookie used during external authentication
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
