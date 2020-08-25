@@ -202,11 +202,11 @@ namespace IdentityServerHost.Quickstart.UI
             // it doesn't expose an API to issue additional claims from the login workflow
             var principal = await _signInManager.CreateUserPrincipalAsync(user);
 
-            //foreach(var claim in claims)
-            //{
-            //    additionalLocalClaims.AddRange(claims);
-            //}
-            
+            foreach (var claim in claims)
+            {
+                additionalLocalClaims.AddRange(claims);
+            }
+
             additionalLocalClaims.AddRange(principal.Claims);
             var name = principal.FindFirst(JwtClaimTypes.Name)?.Value ?? user.Id;
             await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id, name));
@@ -447,15 +447,15 @@ namespace IdentityServerHost.Quickstart.UI
                 var id = new ClaimsIdentity(AccountOptions.WindowsAuthenticationSchemeName);
                 id.AddClaim(new Claim(JwtClaimTypes.Subject, wp.Identity.Name));
                 id.AddClaim(new Claim(JwtClaimTypes.Name, wp.Identity.Name));
-  
+
                 // add the groups as claims -- be careful if the number of groups is too large
-                //if (AccountOptions.IncludeWindowsGroups)
-                //{
-                //    var wi = wp.Identity as WindowsIdentity;
-                //    var groups = wi.Groups.Translate(typeof(NTAccount));
-                //    var roles = groups.Select(x => new Claim(JwtClaimTypes.Role, x.Value));
-                //    id.AddClaims(roles);
-                //}
+                if (AccountOptions.IncludeWindowsGroups)
+                {
+                    var wi = wp.Identity as WindowsIdentity;
+                    var groups = wi.Groups.Translate(typeof(NTAccount));
+                    var roles = groups.Select(x => new Claim(JwtClaimTypes.Role, x.Value));
+                    id.AddClaims(roles);
+                }
 
                 await HttpContext.SignInAsync(IdentityConstants.ExternalScheme, new ClaimsPrincipal(id), props);
 
