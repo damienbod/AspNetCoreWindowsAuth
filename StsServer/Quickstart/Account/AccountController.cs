@@ -192,6 +192,8 @@ namespace IdentityServerHost.Quickstart.UI
             // for the specific prtotocols used and store them in the local auth cookie.
             // this is typically used to store data needed for signout from those protocols.
             var additionalLocalClaims = new List<Claim>();
+            additionalLocalClaims.AddRange(claims);
+
             var localSignInProps = new AuthenticationProperties();
             ProcessLoginCallbackForOidc(result, additionalLocalClaims, localSignInProps);
             ProcessLoginCallbackForWsFed(result, additionalLocalClaims, localSignInProps);
@@ -201,13 +203,8 @@ namespace IdentityServerHost.Quickstart.UI
             // we must issue the cookie maually, and can't use the SignInManager because
             // it doesn't expose an API to issue additional claims from the login workflow
             var principal = await _signInManager.CreateUserPrincipalAsync(user);
-
-            foreach (var claim in claims)
-            {
-                additionalLocalClaims.AddRange(claims);
-            }
-
             additionalLocalClaims.AddRange(principal.Claims);
+
             var name = principal.FindFirst(JwtClaimTypes.Name)?.Value ?? user.Id;
             await _events.RaiseAsync(new UserLoginSuccessEvent(provider, providerUserId, user.Id, name));
 
@@ -221,7 +218,6 @@ namespace IdentityServerHost.Quickstart.UI
 
             await HttpContext.SignInAsync(isuser, localSignInProps);
 
-          
             // delete temporary cookie used during external authentication
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
@@ -459,10 +455,6 @@ namespace IdentityServerHost.Quickstart.UI
 
                 await HttpContext.SignInAsync(IdentityConstants.ExternalScheme, new ClaimsPrincipal(id), props);
 
-                //await HttpContext.SignInAsync(
-                //    IdentityServer4.IdentityServerConstants.ExternalCookieAuthenticationScheme,
-                //    new ClaimsPrincipal(id),
-                //    props);
                 return Redirect(props.RedirectUri);
             }
             else
