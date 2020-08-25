@@ -51,7 +51,6 @@ namespace MvcHybridClient
                 options.ClientId = "hybridclient";
                 options.ClientSecret = "hybrid_flow_secret";
                 options.ResponseType = "code id_token";
-                options.GetClaimsFromUserInfoEndpoint = true;
                 options.Scope.Add("scope_used_for_hybrid_flow");
                 options.Scope.Add("profile");
                 options.Scope.Add("offline_access");
