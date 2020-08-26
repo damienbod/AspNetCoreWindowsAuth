@@ -72,7 +72,7 @@ namespace StsServer
                     PostLogoutRedirectUris = { "https://localhost:44381/signout-callback-oidc" },
 
                     AllowOfflineAccess = true,
-                    AlwaysIncludeUserClaimsInIdToken = true,
+                    //AlwaysIncludeUserClaimsInIdToken = true,
                     AllowedScopes = { "openid", "profile", "offline_access",  "scope_used_for_hybrid_flow" }
                 },
                 new Client
