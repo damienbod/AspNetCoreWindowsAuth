@@ -11,6 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using AppAuthorizationService;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.IdentityModel.Logging;
+using Microsoft.AspNetCore.Authentication;
 
 namespace MvcHybridClient
 {
@@ -54,6 +55,8 @@ namespace MvcHybridClient
                 options.Scope.Add("scope_used_for_hybrid_flow");
                 options.Scope.Add("profile");
                 options.Scope.Add("offline_access");
+                options.GetClaimsFromUserInfoEndpoint = true;
+                options.ClaimActions.MapAll();
                 options.SaveTokens = true;
                 // Set the correct name claim type
                 options.TokenValidationParameters = new TokenValidationParameters
