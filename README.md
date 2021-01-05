@@ -10,6 +10,8 @@
 
  # History
 
+ 2021-01-05 Update .NET 5
+
  2020-08-25 Adding claims (all roles) to the id_token
 
  2020-08-23 Updated Nuget packages. IdentityServer 4 V4
