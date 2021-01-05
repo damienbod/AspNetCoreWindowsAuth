@@ -8,7 +8,16 @@
 	
 </ul>
 
- # History
+## running the applications
+
+- 1.  Start the StsServer project and the Web API project (Visual Studio IIS Express)
+- 2a. Start the MvcHybridClient  (Visual Studio IIS Express)
+- 2b. Start the NativeConsolePKCEClient (Console APP)
+- 3.  Login and run.
+
+Note: the IISExpress certificates need to be allowed when running.
+
+# History
 
  2021-01-05 Update .NET 5
 
