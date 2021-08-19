@@ -5,7 +5,6 @@
     <UserSecretsId>aspnet-Host-12ED8ECC-9EF1-4D31-87B4-1405B3198E5E</UserSecretsId>
   </PropertyGroup>
 
-
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="3.2.449" />
     <PackageReference Include="IdentityModel.OidcClient" Version="3.1.2" />
@@ -27,10 +26,6 @@
     <PackageReference Include="Serilog.Extensions.Logging" Version="3.0.1" />
     <PackageReference Include="Serilog.Sinks.Console" Version="4.0.0" />
     <PackageReference Include="Serilog.Sinks.File" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 
 </Project>
