@@ -7,7 +7,7 @@ namespace AppAuthorizationService
 {
     public class IsAdminHandler : AuthorizationHandler<IsAdminRequirement>
     {
-        private IAppAuthorizationService _appAuthorizationService;
+        private readonly IAppAuthorizationService _appAuthorizationService;
 
         public IsAdminHandler(IAppAuthorizationService appAuthorizationService)
         {
