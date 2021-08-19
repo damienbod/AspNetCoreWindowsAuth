@@ -7,7 +7,7 @@ namespace AppAuthorizationService
     {
         protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRequestBodyRequirement requirement, BodyData bodyData)
         {
-            if(bodyData.User == "mike")
+            if (bodyData.User == "mike")
             {
                 context.Succeed(requirement);
             }

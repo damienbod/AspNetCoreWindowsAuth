@@ -19,7 +19,7 @@ namespace AppAuthorizationService
 
             object user;
             routeValues.TryGetValue("user", out user);
-            if ( user.ToString() == "phil")
+            if (user.ToString() == "phil")
             {
                 context.Succeed(requirement);
             }

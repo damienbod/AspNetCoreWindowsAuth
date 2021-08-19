@@ -5,15 +5,15 @@ using System.Threading.Tasks;
 
 namespace AppAuthorizationService
 {
-    public class IsAdminHandlerWithAge 
-        :AuthorizationHandler<IsAdminRequirement, AdminData>
+    public class IsAdminHandlerWithAge
+        : AuthorizationHandler<IsAdminRequirement, AdminData>
     {
         protected override Task HandleRequirementAsync(
-            AuthorizationHandlerContext context, 
+            AuthorizationHandlerContext context,
             IsAdminRequirement requirement, AdminData adminData)
         {
             // Do null checks
-            var claim =  context.User.Claims.FirstOrDefault(t => t.Type == "claim name");
+            var claim = context.User.Claims.FirstOrDefault(t => t.Type == "claim name");
             if (claim != null && Validate(context.User.Identity.Name, claim.Value, adminData))
             {
                 context.Succeed(requirement);

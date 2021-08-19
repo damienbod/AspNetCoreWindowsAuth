@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
- 
+
 namespace AppAuthorizationService
 {
-    public class ValuesRouteRequirement : IAuthorizationRequirement{}
+    public class ValuesRouteRequirement : IAuthorizationRequirement { }
 }

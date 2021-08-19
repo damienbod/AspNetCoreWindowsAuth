@@ -6,7 +6,7 @@ namespace AppAuthorizationService
     {
         public bool BobIsAnAdmin(string name)
         {
-            if(name.ToLower().Contains("bob"))
+            if (name.ToLower().Contains("bob"))
             {
                 return true;
             }

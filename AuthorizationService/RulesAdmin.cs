@@ -13,7 +13,7 @@ namespace AppAuthorizationService
 
         public static bool IsAdmin(string username, string providerClaimValue)
         {
-            if(adminUsers.Count == 0)
+            if (adminUsers.Count == 0)
             {
                 AddAllowedUsers();
                 AddAllowedProviders();

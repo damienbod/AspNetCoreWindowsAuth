@@ -69,7 +69,7 @@ namespace MvcHybridClient
             services.AddTransient<IAuthorizationHandler, IsAdminHandlerWithAge>();
 
             services.AddSingleton<IAuthorizationHandler, IsAdminHandler>();
-      
+
             services.AddAuthorization(options =>
             {
                 options.AddPolicy("RequireWindowsProviderPolicy", MyPolicies.GetRequireWindowsProviderPolicy());

@@ -47,8 +47,8 @@ namespace NativeConsolePKCEClient
 
             options.LoggerFactory.AddSerilog(serilog);
 
-            _oidcClient = new OidcClient(options); 
-             var result = await _oidcClient.LoginAsync(new LoginRequest());
+            _oidcClient = new OidcClient(options);
+            var result = await _oidcClient.LoginAsync(new LoginRequest());
 
             ShowResult(result);
             await NextSteps(result);
@@ -136,7 +136,7 @@ namespace NativeConsolePKCEClient
         {
             _apiClient.SetBearerToken(currentAccessToken);
             var response = await _apiClient.PostAsJsonAsync(
-                "/api/values", 
+                "/api/values",
                 new BodyData { User = user }
             );
 
@@ -174,7 +174,7 @@ namespace NativeConsolePKCEClient
             if (response.IsSuccessStatusCode)
             {
                 var result = await response.Content.ReadAsStringAsync();
-                Console.WriteLine( $"\n{result}");
+                Console.WriteLine($"\n{result}");
             }
             else
             {

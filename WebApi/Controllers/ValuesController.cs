@@ -32,7 +32,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         [Route("{user}", Name = nameof(GetWithRouteParam))]
-        public IActionResult GetWithRouteParam([FromRoute]string user)
+        public IActionResult GetWithRouteParam([FromRoute] string user)
         {
             return Ok($"get this data [{user}] using the route");
         }
@@ -41,7 +41,7 @@ namespace WebApi.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet]
         [Route("q", Name = nameof(GetWithQueryParam))]
-        public IActionResult GetWithQueryParam([FromQuery]string fruit)
+        public IActionResult GetWithQueryParam([FromQuery] string fruit)
         {
             return Ok($"get this data [{fruit}] using the query parameter");
         }
@@ -51,7 +51,7 @@ namespace WebApi.Controllers
         [Produces(typeof(BodyData))]
         [HttpPost]
         [Route("", Name = nameof(Post))]
-        public async Task<IActionResult> Post([FromBody]BodyData user)
+        public async Task<IActionResult> Post([FromBody] BodyData user)
         {
             var requirement = new ValuesRequestBodyRequirement();
             var resource = user;

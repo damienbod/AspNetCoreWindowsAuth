@@ -261,7 +261,7 @@ namespace IdentityServerHost.Quickstart.UI
             var vm = await BuildLoggedOutViewModelAsync(model.LogoutId);
 
             if (User?.Identity.IsAuthenticated == true)
-            {              
+            {
                 // delete local authentication cookie
                 await _signInManager.SignOutAsync();
 
@@ -306,7 +306,7 @@ namespace IdentityServerHost.Quickstart.UI
 
             var providers = schemes
                 .Where(x => x.DisplayName != null ||
-                            (x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName, 
+                            (x.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName,
                             StringComparison.OrdinalIgnoreCase))
                 )
                 .Select(x => new ExternalProvider
@@ -342,7 +342,7 @@ namespace IdentityServerHost.Quickstart.UI
 
         private string GetDisplayName(AuthenticationScheme authenticationScheme)
         {
-            if(authenticationScheme.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName,
+            if (authenticationScheme.Name.Equals(AccountOptions.WindowsAuthenticationSchemeName,
                             StringComparison.OrdinalIgnoreCase))
             {
                 return AccountOptions.WindowsAuthenticationSchemeName;
@@ -466,7 +466,7 @@ namespace IdentityServerHost.Quickstart.UI
             }
         }
 
-        private async Task<(ApplicationUser user, string provider, string providerUserId, IEnumerable<Claim> claims)> 
+        private async Task<(ApplicationUser user, string provider, string providerUserId, IEnumerable<Claim> claims)>
             FindUserFromExternalProviderAsync(AuthenticateResult result)
         {
             var externalUser = result.Principal;

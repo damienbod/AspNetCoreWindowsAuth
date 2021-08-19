@@ -23,9 +23,9 @@ namespace MvcHybridClient.Controllers
         public async Task<IActionResult> Admin()
         {
             var requirement = new IsAdminRequirement();
-            var resource = new AdminData { Age= 32, Department = "HR"};
+            var resource = new AdminData { Age = 32, Department = "HR" };
 
-            var authorizationResult = 
+            var authorizationResult =
                 await _authorizationService.AuthorizeAsync(
                     User, resource, requirement);
 
