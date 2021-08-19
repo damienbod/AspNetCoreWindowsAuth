@@ -10,15 +10,13 @@ namespace NativeConsolePKCEClient
 {
     public class Program
     {
-        static string _authority = "https://localhost:44364";
-        static string _api = "https://localhost:44342";
+        static readonly string _authority = "https://localhost:44364";
+        static readonly string _api = "https://localhost:44342";
 
         static OidcClient _oidcClient;
-        static HttpClient _apiClient = new HttpClient { BaseAddress = new Uri(_api) };
+        static readonly HttpClient _apiClient = new HttpClient { BaseAddress = new Uri(_api) };
 
-        public static void Main(string[] args) => RunAsync().GetAwaiter().GetResult();
-
-        public static async Task RunAsync()
+        public async static Task Main(string[] args)
         {
             await Login();
         }

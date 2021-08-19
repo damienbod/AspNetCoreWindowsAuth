@@ -23,7 +23,7 @@ namespace MvcHybridClient
 
         public IConfiguration Configuration { get; }
 
-        private string stsServer = "https://localhost:44364";
+        private readonly string _stsServer = "https://localhost:44364";
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -46,7 +46,7 @@ namespace MvcHybridClient
             {
                 options.SignInScheme = "Cookies";
                 options.SignOutScheme = "OpenIdConnect";
-                options.Authority = stsServer;
+                options.Authority = _stsServer;
                 options.RequireHttpsMetadata = true;
                 options.ClientId = "hybridclient";
                 options.ClientSecret = "hybrid_flow_secret";
