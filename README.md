@@ -1,3 +1,5 @@
+[![.NET](https://github.com/damienbod/AspNetCoreWindowsAuth/actions/workflows/dotnet.yml/badge.svg)](https://github.com/damienbod/AspNetCoreWindowsAuth/actions/workflows/dotnet.yml)
+
 # Blogs
 
 <ul>
