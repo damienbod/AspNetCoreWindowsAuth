@@ -19,6 +19,8 @@ Note: the IISExpress certificates need to be allowed when running.
 
 # History
 
+ 2021-11-12 Updated to .NET 6
+
  2021-08-19 Updated packages
  
  2021-01-05 Update .NET 5
