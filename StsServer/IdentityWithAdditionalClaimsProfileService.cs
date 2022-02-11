@@ -10,45 +10,44 @@ using Microsoft.AspNetCore.Identity;
 using IdentityServer4;
 using StsServer.Models;
 
-namespace StsServer
+namespace StsServer;
+
+public class IdentityWithAdditionalClaimsProfileService : IProfileService
 {
-    public class IdentityWithAdditionalClaimsProfileService : IProfileService
+    private readonly IUserClaimsPrincipalFactory<ApplicationUser> _claimsFactory;
+    private readonly UserManager<ApplicationUser> _userManager;
+
+    public IdentityWithAdditionalClaimsProfileService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> claimsFactory)
     {
-        private readonly IUserClaimsPrincipalFactory<ApplicationUser> _claimsFactory;
-        private readonly UserManager<ApplicationUser> _userManager;
+        _userManager = userManager;
+        _claimsFactory = claimsFactory;
+    }
 
-        public IdentityWithAdditionalClaimsProfileService(UserManager<ApplicationUser> userManager, IUserClaimsPrincipalFactory<ApplicationUser> claimsFactory)
+    public async Task GetProfileDataAsync(ProfileDataRequestContext context)
+    {
+        var sub = context.Subject.GetSubjectId();
+
+        var user = await _userManager.FindByIdAsync(sub);
+        var principal = await _claimsFactory.CreateAsync(user);
+
+        var claims = principal.Claims.ToList();
+
+        claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
+        claims.Add(new Claim(JwtClaimTypes.GivenName, user.UserName));
+
+        var wc = context.Subject.Identities.FirstOrDefault();
+        if (wc != null)
         {
-            _userManager = userManager;
-            _claimsFactory = claimsFactory;
+            claims.AddRange(wc.Claims.Where(c => c.Type == "role"));
         }
 
-        public async Task GetProfileDataAsync(ProfileDataRequestContext context)
-        {
-            var sub = context.Subject.GetSubjectId();
+        context.IssuedClaims = claims;
+    }
 
-            var user = await _userManager.FindByIdAsync(sub);
-            var principal = await _claimsFactory.CreateAsync(user);
-
-            var claims = principal.Claims.ToList();
-
-            claims = claims.Where(claim => context.RequestedClaimTypes.Contains(claim.Type)).ToList();
-            claims.Add(new Claim(JwtClaimTypes.GivenName, user.UserName));
-
-            var wc = context.Subject.Identities.FirstOrDefault();
-            if (wc != null)
-            {
-                claims.AddRange(wc.Claims.Where(c => c.Type == "role"));
-            }
-
-            context.IssuedClaims = claims;
-        }
-
-        public async Task IsActiveAsync(IsActiveContext context)
-        {
-            var sub = context.Subject.GetSubjectId();
-            var user = await _userManager.FindByIdAsync(sub);
-            context.IsActive = user != null;
-        }
+    public async Task IsActiveAsync(IsActiveContext context)
+    {
+        var sub = context.Subject.GetSubjectId();
+        var user = await _userManager.FindByIdAsync(sub);
+        context.IsActive = user != null;
     }
 }

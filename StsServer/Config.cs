@@ -5,94 +5,93 @@
 using IdentityServer4.Models;
 using System.Collections.Generic;
 
-namespace StsServer
+namespace StsServer;
+
+public static class Config
 {
-    public static class Config
+    public static IEnumerable<IdentityResource> GetIdentityResources()
     {
-        public static IEnumerable<IdentityResource> GetIdentityResources()
+        return new List<IdentityResource>
         {
-            return new List<IdentityResource>
-            {
-                new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-                new IdentityResources.Email()
-            };
-        }
+            new IdentityResources.OpenId(),
+            new IdentityResources.Profile(),
+            new IdentityResources.Email()
+        };
+    }
 
-        public static IEnumerable<ApiScope> GetApiScopes()
+    public static IEnumerable<ApiScope> GetApiScopes()
+    {
+        return new List<ApiScope>
         {
-            return new List<ApiScope>
-            {
-                new ApiScope("scope_used_for_hybrid_flow", "Scope for the scope_used_for_hybrid_flow"),
-                new ApiScope("native_api",  "Scope for the native_api")
-            };
-        }
+            new ApiScope("scope_used_for_hybrid_flow", "Scope for the scope_used_for_hybrid_flow"),
+            new ApiScope("native_api",  "Scope for the native_api")
+        };
+    }
 
-        public static IEnumerable<ApiResource> GetApiResources()
+    public static IEnumerable<ApiResource> GetApiResources()
+    {
+        return new List<ApiResource>
         {
-            return new List<ApiResource>
+            new ApiResource("ApiHybridFlow")
             {
-                new ApiResource("ApiHybridFlow")
+                ApiSecrets =
                 {
-                    ApiSecrets =
-                    {
-                        new Secret("hybrid_flow_secret".Sha256())
-                    },
-                    Scopes = { "scope_used_for_hybrid_flow" },
-                    UserClaims = { "role", "admin", "user" }
+                    new Secret("hybrid_flow_secret".Sha256())
                 },
-                new ApiResource("NativeAPI")
+                Scopes = { "scope_used_for_hybrid_flow" },
+                UserClaims = { "role", "admin", "user" }
+            },
+            new ApiResource("NativeAPI")
+            {
+                DisplayName = "Native Client API",
+                ApiSecrets =
                 {
-                    DisplayName = "Native Client API",
-                    ApiSecrets =
-                    {
-                        new Secret("native_api_secret".Sha256())
-                    },
-                    Scopes = { "native_api" },
-                    UserClaims = { "role", "admin", "user" }
+                    new Secret("native_api_secret".Sha256())
+                },
+                Scopes = { "native_api" },
+                UserClaims = { "role", "admin", "user" }
+            }
+        };
+    }
+
+    public static IEnumerable<Client> GetClients()
+    {
+        return new[]
+        {
+            // MVC client using hybrid flow
+            new Client
+            {
+                ClientId = "hybridclient",
+                ClientName = "MVC Client",
+
+                AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
+                ClientSecrets = { new Secret("hybrid_flow_secret".Sha256()) },
+                RequirePkce = false,
+                RedirectUris = { "https://localhost:44381/signin-oidc" },
+                FrontChannelLogoutUri = "https://localhost:44381/signout-oidc",
+                PostLogoutRedirectUris = { "https://localhost:44381/signout-callback-oidc" },
+
+                AllowOfflineAccess = true,
+                //AlwaysIncludeUserClaimsInIdToken = true,
+                AllowedScopes = { "openid", "profile", "offline_access",  "scope_used_for_hybrid_flow" }
+            },
+            new Client
+            {
+                ClientId = "native.code",
+                ClientName = "Native Client (Code with PKCE)",
+
+                RedirectUris = { "https://127.0.0.1:45656" },
+                PostLogoutRedirectUris = { "https://127.0.0.1:45656" },
+
+                RequireClientSecret = false,
+
+                AllowedGrantTypes = GrantTypes.Code,
+                RequirePkce = true,
+                AllowedScopes = { "openid", "profile", "email", "native_api" },
+
+                AllowOfflineAccess = true,
+                RefreshTokenUsage = TokenUsage.ReUse
                 }
-            };
-        }
-
-        public static IEnumerable<Client> GetClients()
-        {
-            return new[]
-            {
-                // MVC client using hybrid flow
-                new Client
-                {
-                    ClientId = "hybridclient",
-                    ClientName = "MVC Client",
-
-                    AllowedGrantTypes = GrantTypes.HybridAndClientCredentials,
-                    ClientSecrets = { new Secret("hybrid_flow_secret".Sha256()) },
-                    RequirePkce = false,
-                    RedirectUris = { "https://localhost:44381/signin-oidc" },
-                    FrontChannelLogoutUri = "https://localhost:44381/signout-oidc",
-                    PostLogoutRedirectUris = { "https://localhost:44381/signout-callback-oidc" },
-
-                    AllowOfflineAccess = true,
-                    //AlwaysIncludeUserClaimsInIdToken = true,
-                    AllowedScopes = { "openid", "profile", "offline_access",  "scope_used_for_hybrid_flow" }
-                },
-                new Client
-                {
-                    ClientId = "native.code",
-                    ClientName = "Native Client (Code with PKCE)",
-
-                    RedirectUris = { "https://127.0.0.1:45656" },
-                    PostLogoutRedirectUris = { "https://127.0.0.1:45656" },
-
-                    RequireClientSecret = false,
-
-                    AllowedGrantTypes = GrantTypes.Code,
-                    RequirePkce = true,
-                    AllowedScopes = { "openid", "profile", "email", "native_api" },
-
-                    AllowOfflineAccess = true,
-                    RefreshTokenUsage = TokenUsage.ReUse
-                 }
-            };
-        }
+        };
     }
 }

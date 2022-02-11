@@ -1,20 +1,19 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace AppAuthorizationService
+namespace AppAuthorizationService;
+
+public static class MyPolicies
 {
-    public static class MyPolicies
+    private static AuthorizationPolicy requireWindowsProviderPolicy;
+
+    public static AuthorizationPolicy GetRequireWindowsProviderPolicy()
     {
-        private static AuthorizationPolicy requireWindowsProviderPolicy;
+        if (requireWindowsProviderPolicy != null) return requireWindowsProviderPolicy;
 
-        public static AuthorizationPolicy GetRequireWindowsProviderPolicy()
-        {
-            if (requireWindowsProviderPolicy != null) return requireWindowsProviderPolicy;
+        requireWindowsProviderPolicy = new AuthorizationPolicyBuilder()
+                .RequireClaim("http://schemas.microsoft.com/identity/claims/identityprovider", "Windows")
+                .Build();
 
-            requireWindowsProviderPolicy = new AuthorizationPolicyBuilder()
-                  .RequireClaim("http://schemas.microsoft.com/identity/claims/identityprovider", "Windows")
-                  .Build();
-
-            return requireWindowsProviderPolicy;
-        }
+        return requireWindowsProviderPolicy;
     }
 }

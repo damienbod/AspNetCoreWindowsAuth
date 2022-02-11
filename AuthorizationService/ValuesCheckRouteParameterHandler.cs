@@ -2,29 +2,28 @@
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 
-namespace AppAuthorizationService
+namespace AppAuthorizationService;
+
+public class ValuesCheckRouteParameterHandler : AuthorizationHandler<ValuesRouteRequirement>
 {
-    public class ValuesCheckRouteParameterHandler : AuthorizationHandler<ValuesRouteRequirement>
+    private readonly IHttpContextAccessor _httpContextAccessor;
+
+    public ValuesCheckRouteParameterHandler(IHttpContextAccessor httpContextAccessor)
     {
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        _httpContextAccessor = httpContextAccessor;
+    }
 
-        public ValuesCheckRouteParameterHandler(IHttpContextAccessor httpContextAccessor)
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRouteRequirement requirement)
+    {
+        var routeValues = _httpContextAccessor.HttpContext.Request.RouteValues;
+
+        object user;
+        routeValues.TryGetValue("user", out user);
+        if (user.ToString() == "phil")
         {
-            _httpContextAccessor = httpContextAccessor;
+            context.Succeed(requirement);
         }
 
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRouteRequirement requirement)
-        {
-            var routeValues = _httpContextAccessor.HttpContext.Request.RouteValues;
-
-            object user;
-            routeValues.TryGetValue("user", out user);
-            if (user.ToString() == "phil")
-            {
-                context.Succeed(requirement);
-            }
-
-            return Task.CompletedTask;
-        }
+        return Task.CompletedTask;
     }
 }
