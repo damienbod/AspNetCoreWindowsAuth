@@ -6,59 +6,58 @@ using Serilog;
 using Serilog.Events;
 using Serilog.Sinks.SystemConsole.Themes;
 
-namespace StsServer
+namespace StsServer;
+
+public class Program
 {
-    public class Program
+    public static int Main(string[] args)
     {
-        public static int Main(string[] args)
+        var seed = args.Any(x => x == "/seed");
+        if (seed) args = args.Except(new[] { "/seed" }).ToArray();
+
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Debug()
+            .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
+            .Enrich.FromLogContext()
+            .WriteTo.Console()
+            .CreateLogger();
+
+        try
         {
-            var seed = args.Any(x => x == "/seed");
-            if (seed) args = args.Except(new[] { "/seed" }).ToArray();
+            Log.Information("Starting web host");
 
-            Log.Logger = new LoggerConfiguration()
-                .MinimumLevel.Debug()
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)
-                .Enrich.FromLogContext()
-                .WriteTo.Console()
-                .CreateLogger();
-
-            try
+            if (seed)
             {
-                Log.Information("Starting web host");
+                var host = CreateHostBuilder(args).Build();
 
-                if (seed)
-                {
-                    var host = CreateHostBuilder(args).Build();
-
-                    SeedData.EnsureSeedData(host.Services);
-                    return 0;
-                }
-
-                CreateHostBuilder(args).Build().Run();
+                SeedData.EnsureSeedData(host.Services);
                 return 0;
             }
-            catch (Exception ex)
-            {
-                Log.Fatal(ex, "Host terminated unexpectedly");
-                return 1;
-            }
-            finally
-            {
-                Log.CloseAndFlush();
-            }
-        }
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>()
-                    .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
-                    .ReadFrom.Configuration(hostingContext.Configuration)
-                    .Enrich.FromLogContext()
-                    .WriteTo.File("../Logs/_log_sts.txt")
-                    .WriteTo.Console(theme: AnsiConsoleTheme.Code)
-                );
-                });
+            CreateHostBuilder(args).Build().Run();
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            Log.Fatal(ex, "Host terminated unexpectedly");
+            return 1;
+        }
+        finally
+        {
+            Log.CloseAndFlush();
+        }
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+        Host.CreateDefaultBuilder(args)
+            .ConfigureWebHostDefaults(webBuilder =>
+            {
+                webBuilder.UseStartup<Startup>()
+                .UseSerilog((hostingContext, loggerConfiguration) => loggerConfiguration
+                .ReadFrom.Configuration(hostingContext.Configuration)
+                .Enrich.FromLogContext()
+                .WriteTo.File("../Logs/_log_sts.txt")
+                .WriteTo.Console(theme: AnsiConsoleTheme.Code)
+            );
+            });
 }
