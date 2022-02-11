@@ -1,10 +1,7 @@
-﻿using System;
+﻿namespace AppAuthorizationService;
 
-namespace AppAuthorizationService
+public interface IAppAuthorizationService
 {
-    public interface IAppAuthorizationService
-    {
-        bool IsAdmin(string username, string providerClaimValue);
-        bool BobIsAnAdmin(string name);
-    }
+    bool IsAdmin(string username, string providerClaimValue);
+    bool BobIsAnAdmin(string name);
 }

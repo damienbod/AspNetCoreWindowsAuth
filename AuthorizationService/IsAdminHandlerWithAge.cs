@@ -3,35 +3,34 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace AppAuthorizationService
+namespace AppAuthorizationService;
+
+public class IsAdminHandlerWithAge
+    : AuthorizationHandler<IsAdminRequirement, AdminData>
 {
-    public class IsAdminHandlerWithAge
-        : AuthorizationHandler<IsAdminRequirement, AdminData>
+    protected override Task HandleRequirementAsync(
+        AuthorizationHandlerContext context,
+        IsAdminRequirement requirement, AdminData adminData)
     {
-        protected override Task HandleRequirementAsync(
-            AuthorizationHandlerContext context,
-            IsAdminRequirement requirement, AdminData adminData)
+        // Do null checks
+        var claim = context.User.Claims.FirstOrDefault(t => t.Type == "claim name");
+        if (claim != null && Validate(context.User.Identity.Name, claim.Value, adminData))
         {
-            // Do null checks
-            var claim = context.User.Claims.FirstOrDefault(t => t.Type == "claim name");
-            if (claim != null && Validate(context.User.Identity.Name, claim.Value, adminData))
-            {
-                context.Succeed(requirement);
-            }
-
-            return Task.CompletedTask;
+            context.Succeed(requirement);
         }
 
-        private bool Validate(string name, string value, AdminData adminData)
-        {
-            throw new NotImplementedException();
-        }
+        return Task.CompletedTask;
+    }
 
-        private IAppAuthorizationService _appAuthorizationService;
+    private bool Validate(string name, string value, AdminData adminData)
+    {
+        throw new NotImplementedException();
+    }
 
-        public IsAdminHandlerWithAge(IAppAuthorizationService appAuthorizationService)
-        {
-            _appAuthorizationService = appAuthorizationService;
-        }
+    private IAppAuthorizationService _appAuthorizationService;
+
+    public IsAdminHandlerWithAge(IAppAuthorizationService appAuthorizationService)
+    {
+        _appAuthorizationService = appAuthorizationService;
     }
 }

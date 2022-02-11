@@ -1,23 +1,22 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 
-namespace AppAuthorizationService
+namespace AppAuthorizationService;
+
+public class ValuesCheckRequestBodyHandler : AuthorizationHandler<ValuesRequestBodyRequirement, BodyData>
 {
-    public class ValuesCheckRequestBodyHandler : AuthorizationHandler<ValuesRequestBodyRequirement, BodyData>
+    protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRequestBodyRequirement requirement, BodyData bodyData)
     {
-        protected override Task HandleRequirementAsync(AuthorizationHandlerContext context, ValuesRequestBodyRequirement requirement, BodyData bodyData)
+        if (bodyData.User == "mike")
         {
-            if (bodyData.User == "mike")
-            {
-                context.Succeed(requirement);
-            }
-
-            return Task.CompletedTask;
+            context.Succeed(requirement);
         }
-    }
 
-    public class BodyData
-    {
-        public string User { get; set; }
+        return Task.CompletedTask;
     }
+}
+
+public class BodyData
+{
+    public string User { get; set; }
 }

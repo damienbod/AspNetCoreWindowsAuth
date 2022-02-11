@@ -1,22 +1,19 @@
-﻿using System;
+﻿namespace AppAuthorizationService;
 
-namespace AppAuthorizationService
+public class AppAuthorizationService : IAppAuthorizationService
 {
-    public class AppAuthorizationService : IAppAuthorizationService
+    public bool BobIsAnAdmin(string name)
     {
-        public bool BobIsAnAdmin(string name)
+        if (name.ToLower().Contains("bob"))
         {
-            if (name.ToLower().Contains("bob"))
-            {
-                return true;
-            }
-
-            return false;
+            return true;
         }
 
-        public bool IsAdmin(string username, string providerClaimValue)
-        {
-            return RulesAdmin.IsAdmin(username, providerClaimValue);
-        }
+        return false;
+    }
+
+    public bool IsAdmin(string username, string providerClaimValue)
+    {
+        return RulesAdmin.IsAdmin(username, providerClaimValue);
     }
 }

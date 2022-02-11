@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 
-namespace AppAuthorizationService
-{
-    public class IsAdminRequirement : IAuthorizationRequirement { }
-}
+namespace AppAuthorizationService;
+
+public class IsAdminRequirement : IAuthorizationRequirement { }
